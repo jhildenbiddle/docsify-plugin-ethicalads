@@ -4,13 +4,15 @@ const defaults = {
     clientURL: 'https://media.ethicalads.io/media/client/ethicalads.min.js',
     placements: [
         {
-            class: 'horizontal',
-            insertBefore: '.sidebar-nav',
+            // insertBefore: null,
             // appendTo: null,
             // prependTo: null,
             // insertAfter: null
         }
     ],
+    // Default placements
+    showFooter: false,
+    showSidebar: true,
     // Ad attributes
     class: null,
     id: null,
@@ -72,6 +74,23 @@ function renderAd(config) {
     // Plugin
     const docsifyEthicalAds = function(hook, vm) {
         const settings = { ...defaults, ...(window.$docsify.ethicalads || {})};
+
+        // Push default ad placements
+        if (settings.showFooter) {
+            settings.placements.unshift({
+                appendTo: 'main',
+                class: 'bordered',
+                style: 'fixedfooter',
+                type: 'text'
+            });
+        }
+        if (settings.showSidebar) {
+            settings.placements.unshift({
+                insertBefore: '.sidebar-nav',
+                class: 'horizontal flat',
+                type: 'image'
+            });
+        }
 
         hook.ready(function() {
             const scriptElm = document.createElement('script');
