@@ -209,7 +209,7 @@ body.close [data-ea-style="fixedfooter"] .ea-placement[class] {
 }
 
 
-/* Stickbox */
+/* Stickybox */
 /* ---------------------------------------- */
 body [data-ea-style="stickybox"] .ea-placement.ea-type-image .ea-content {
     margin: 0;
