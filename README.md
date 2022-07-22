@@ -2,31 +2,22 @@
 
 [![NPM](https://img.shields.io/npm/v/docsify-plugin-ethicalads.svg?style=flat-square)](https://www.npmjs.com/package/docsify-plugin-ethicalads)
 [![GitHub Workflow Status (main)](https://img.shields.io/github/workflow/status/jhildenbiddle/docsify-plugin-ethicalads/Build/main?label=checks&style=flat-square)](https://github.com/jhildenbiddle/docsify-plugin-ethicalads/actions?query=branch%3Amain+)
-[![Codacy grade](https://img.shields.io/codacy/grade/e9c2a9504211450ab39e0d72a1158a47.svg?style=flat-square)](https://app.codacy.com/gh/jhildenbiddle/docsify-plugin-ethicalads/dashboard)
+[![Codacy grade](https://img.shields.io/codacy/grade/63c04a45757e46c78e4e01c99346548c.svg?style=flat-square)](https://app.codacy.com/gh/jhildenbiddle/docsify-plugin-ethicalads/dashboard)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/jhildenbiddle/docsify-plugin-ethicalads/blob/main/LICENSE)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/docsify-plugin-ethicalads/badge)](https://www.jsdelivr.com/package/npm/docsify-plugin-ethicalads)
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fjhildenbiddle%2Fdocsify-plugin-ethicalads&hashtags=docsify,developers,frontend,plugin)
 
-A [docsify.js](https://docsify.js.org) plugin for rendering ad placements from [EthicalAds](https://www.ethicalads.io/)
+A [docsify.js](https://docsify.js.org) plugin for rendering ad placements from [EthicalAds](https://www.ethicalads.io/).
 
 - [Documentation](https://jhildenbiddle.github.io/docsify-plugin-ethicalads)
 
 **Screenshot**
 
-<!-- Screenshots made with https://www.screely.com/ -->
-<a href="https://jhildenbiddle.github.io/docsify-plugin-ethicalads">
-  <picture>
-    <source srcset="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-runkit.webp" type="image/webp">
-    <img src="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-runkit.jpg" alt="screenshot">
-  </picture>
-</a>
+TBD
 
 ## Features
 
-- Render JavaScript code blocks as interactive [Node.js](https://nodejs.org/en/) <abbr title="Read-Eval-Print Loop">REPL</abbr>s
-- Embed existing notebooks from [runkit.com](https://runkit.com/)
-- Configure <abbr title="Read-Eval-Print Loop">REPL</abbr>s globally or individually using [options](https://jhildenbiddle.github.io/docsify-plugin-ethicalads#options) from RunKit's API
-- Save changes as new notebooks on [runkit.com](https://runkit.com/)
+- Render ad placements from [EthicalAds](https://www.ethicalads.io/)
 
 ## Installation
 
@@ -45,7 +36,7 @@ A [docsify.js](https://docsify.js.org) plugin for rendering ad placements from [
    ```javascript
    window.$docsify = {
      // ...
-     runkit: {
+     ethicalads: {
        // Options...
      }
    };
