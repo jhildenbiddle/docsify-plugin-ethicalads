@@ -9,3 +9,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras molestie, dui id a
 ## Text Ads
 
 <div id="text-ads-target"></div>
+
+## Stickybox
+
+<div id="stickybox-target"></div>
