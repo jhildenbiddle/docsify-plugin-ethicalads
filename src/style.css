@@ -32,6 +32,7 @@
 /* ---------------------------------------- */
 [data-ea-publisher],
 [data-ea-type] {
+    position: relative;
     border-radius: var(--ea-border-radius);
 }
 
@@ -170,38 +171,6 @@
 }
 
 
-/* Stickbox */
-/* ---------------------------------------- */
-body [data-ea-style="stickybox"] .ea-placement.ea-type-image .ea-content {
-    margin: 0;
-    padding-bottom: 2.9em;
-    background: var(--ea-background);
-}
-
-[data-ea-style="stickybox"] .ea-placement .ea-callout {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    padding: 0.15em 1em;
-    border-top-left-radius: var(--ea-border-radius);
-    background: var(--ea-sidebar-callout-background);
-}
-
-[data-ea-style="stickybox"] .ea-placement.ea-type-image .ea-stickybox-hide {
-    top: 0px;
-    right: 0px;
-    height: 20px;
-    width: 20px;
-    border: none;
-    border-radius: 0 calc(var(--ea-border-radius) / 2) 0 calc(var(--ea-border-radius) / 2);
-    background: var(--ea-callout-background);
-    color: var(--ea-text-color);
-    font-size: 16px;
-    line-height: 17px;
-}
-
-
 /* Fixed Footer */
 /* ---------------------------------------- */
 [data-ea-style="fixedfooter"] .ea-placement[class] {
@@ -237,4 +206,36 @@ body [data-ea-style="stickybox"] .ea-placement.ea-type-image .ea-content {
 
 body.close [data-ea-style="fixedfooter"] .ea-placement[class] {
     left: 0;
+}
+
+
+/* Stickbox */
+/* ---------------------------------------- */
+body [data-ea-style="stickybox"] .ea-placement.ea-type-image .ea-content {
+    margin: 0;
+    padding-bottom: 2.9em;
+    background: var(--ea-background);
+}
+
+[data-ea-style="stickybox"] .ea-placement .ea-callout {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 0.15em 1em;
+    border-top-left-radius: var(--ea-border-radius);
+    background: var(--ea-sidebar-callout-background);
+}
+
+[data-ea-style="stickybox"] .ea-placement.ea-type-image .ea-stickybox-hide {
+    top: 0px;
+    right: 0px;
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 0 calc(var(--ea-border-radius) / 2) 0 calc(var(--ea-border-radius) / 2);
+    background: var(--ea-callout-background);
+    color: var(--ea-text-color);
+    font-size: 16px;
+    line-height: 17px;
 }
