@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="description" content="docsify-plugin-ethicalads - Ad placement tests">
+    <title>docsify-plugin-ethicalads - Ad placement tests</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"> -->
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        // Docsify
+        window.$docsify = {
+            // GENERAL
+            // -----------------------------------------------------------------
+            name       : 'docsify-plugin-ethicalads',
+            repo       : 'https://github.com/jhildenbiddle/docsify-plugin-ethicalads',
+            homepage   : 'index.md',
+
+            // NAVIGATION
+            // -----------------------------------------------------------------
+            auto2top   : true,
+            maxLevel   : 2,
+            subMaxLevel: 2,
+
+            // PLUGINS
+            // -----------------------------------------------------------------
+            ethicalads: {
+                publisher: 'jhildenbiddle-github-io',
+                placements: [
+                    // Sidebar - Image
+                    { insertBefore: '.sidebar-nav', type: 'image' },
+                    { insertBefore: '.sidebar-nav', type: 'image', class: 'bordered' },
+                    { insertBefore: '.sidebar-nav', type: 'image', class: 'flat' },
+                    { insertBefore: '.sidebar-nav', type: 'image', class: 'horizontal' },
+                    { insertBefore: '.sidebar-nav', type: 'image', class: 'horizontal bordered' },
+                    { insertBefore: '.sidebar-nav', type: 'image', class: 'horizontal flat' },
+                    // Sidebar - Text
+                    { insertBefore: '.sidebar-nav', type: 'text' },
+                    { insertBefore: '.sidebar-nav', type: 'text', class: 'bordered' },
+                    { insertBefore: '.sidebar-nav', type: 'text', class: 'flat' },
+                    // Main - Image
+                    { appendTo: '#image-ads-target', type: 'image' },
+                    { appendTo: '#image-ads-target', type: 'image', class: 'bordered' },
+                    { appendTo: '#image-ads-target', type: 'image', class: 'flat' },
+                    { appendTo: '#image-ads-target', type: 'image', class: 'horizontal' },
+                    { appendTo: '#image-ads-target', type: 'image', class: 'horizontal bordered' },
+                    { appendTo: '#image-ads-target', type: 'image', class: 'horizontal flat' },
+                    // Main - Text
+                    { appendTo: '#text-ads-target', type: 'text' },
+                    { appendTo: '#text-ads-target', type: 'text', class: 'bordered' },
+                    { appendTo: '#text-ads-target', type: 'text', class: 'flat' },
+                    // Global
+                    { appendTo: 'main', style: 'stickybox', class: 'bordered' },
+                    { appendTo: 'main', type: 'text', style: 'fixedfooter', class: 'bordered' },
+                ]
+            },
+            executeScript: true,
+            search: {
+                depth      : 3,
+                noData     : 'No results!',
+                placeholder: 'Search...'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-ethicalads@latest"></script>
+</body>
+</html>
