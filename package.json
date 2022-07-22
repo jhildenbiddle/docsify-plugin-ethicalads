@@ -18,11 +18,11 @@
     "javascript",
     "js",
     "markdown",
-    "notebook",
-    "playground",
-    "plugin",
-    "repl",
-    "runkit"
+    "ethical",
+    "ads",
+    "ethicalads",
+    "placement",
+    "publisher"
   ],
   "browserslist": [
     "ie >= 11"
