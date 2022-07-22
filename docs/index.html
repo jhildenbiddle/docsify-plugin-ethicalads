@@ -9,7 +9,12 @@
     <title>docsify-plugin-ethicalads - A docsify.js plugin for rendering ad placements from EthicalAds</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <style>
+        :root {
+            --sidebar-name-font-size: 1.2rem;
+        }
+    </style>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRRBEH0M1B"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -22,6 +27,24 @@
 <body>
     <div id="app"></div>
 
+    <style>
+        /* Docsify Themeable */
+        :root {
+            --ea-sidebar-inset: var(--sidebar-width);
+            --ea-sidebar-toggle-inset: 0;
+        }
+
+        .sidebar {
+            --ea-background: #ededed;
+            --ea-callout-background: var(--sidebar-border-color);
+            --ea-margin: 1em 0;
+        }
+
+        .sidebar [data-ea-publisher].flat,
+        .sidebar [data-ea-type].flat {
+            --ea-margin: 0 -25px;
+        }
+    </style>
     <script>
         // Docsify
         window.$docsify = {
@@ -43,6 +66,12 @@
 
             // PLUGINS
             // -----------------------------------------------------------------
+            ethicalads: {
+                publisher: 'jhildenbiddle-github-io',
+                placements: [
+                    { insertBefore: '.sidebar-nav', type: 'image', class: 'horizontal flat' }
+                ]
+            },
             executeScript: true,
             search: {
                 depth      : 3,
