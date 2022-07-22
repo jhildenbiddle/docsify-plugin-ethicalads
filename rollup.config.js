@@ -83,7 +83,6 @@ const config = {
             mode: [
                 'inject', {
                     container: 'body',
-                    singleTag: true,
                     prepend: true,
                     attributes: { 'data-src': pkg.name }
                 }
