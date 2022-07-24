@@ -8,19 +8,12 @@
     <meta name="description" content="docsify-plugin-ethicalads - A docsify.js plugin for rendering ad placements from EthicalAds">
     <title>docsify-plugin-ethicalads - A docsify.js plugin for rendering ad placements from EthicalAds</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
-
-    <style>
-        :root {
-            --sidebar-name-font-size: 1.2rem;
-        }
-    </style>
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRRBEH0M1B"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-        gtag('config', 'G-W63FLDK4FM');
+        gtag('config', 'G-W63FLDK4FM'); // cspell: disable-line
     </script>
 </head>
 
@@ -28,6 +21,34 @@
     <div id="app"></div>
 
     <style>
+        :root {
+            --sidebar-name-font-size: 1.2rem;
+        }
+
+        .ad-grid {
+            --ea-margin: 0;
+
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 1em 2em;
+            margin: 1em 1em 1.5em 1em;
+        }
+
+        .custom-ad1 {
+            --ea-background: #1e293b;
+            --ea-text-color: #f8fafc;
+            --ea-strong-color: #22d3ee;
+        }
+
+        .custom-ad2 {
+            /* --ea-background: linear-gradient(120deg, #753a88, #9a4086, #b84981, #d2587a, #e56c73, #f3826d, #fb9b69, #ffb56b); */
+            --ea-background: linear-gradient(68.3deg, rgba(236,54,110,1) 0.4%, rgba(245,177,97,1) 100.2%);
+            --ea-text-color: rgba(255, 255, 255, 0.85);
+            --ea-strong-color: #f8fafc;
+        }
+
         /* Docsify Themeable */
         :root {
             --ea-sidebar-inset: var(--sidebar-width);
@@ -38,6 +59,10 @@
             --ea-background: #ededed;
             --ea-callout-background: var(--sidebar-border-color);
             --ea-margin: 1em 0;
+
+            /* Docsify-themeable Website */
+            --ea-background: hsl(var(--theme-hue), 15%, 94%);
+            --ea-callout-background: hsl(var(--theme-hue), 13%, 87%);
         }
 
         .sidebar [data-ea-publisher].flat,
