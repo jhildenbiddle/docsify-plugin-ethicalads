@@ -13,7 +13,7 @@ A [docsify.js](https://docsify.js.org) plugin for rendering ad placements from [
 
 ## Screenshots
 
-Sample ad placements shown using default and custom styles.
+Sample ad placements using default and custom styles.
 
 <a href="https://jhildenbiddle.github.io/docsify-plugin-ethicalads">
   <picture>
