@@ -38,7 +38,6 @@ function renderAd(config) {
         'forceCampaign',
         'forcedAd',
         'keywords',
-        'manual',
         'publisher',
         'type'
     ].filter(v => config[v]);
