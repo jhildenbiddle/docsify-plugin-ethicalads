@@ -30,7 +30,8 @@ const defaults = {
 function renderAd(config) {
     const attrs = [
         'class',
-        'id'
+        'id',
+        'style'
     ].filter(v => config[v]);
     const dataAttrs = [
         'campaignTypes',
@@ -39,7 +40,6 @@ function renderAd(config) {
         'keywords',
         'manual',
         'publisher',
-        'style',
         'type'
     ].filter(v => config[v]);
     const insertMap = {
