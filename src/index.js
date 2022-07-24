@@ -105,10 +105,16 @@ function renderAd(config) {
                 return;
             }
 
+            // Render `ethicalads.placements`
             settings.placements.forEach(placement => {
                 const config = { ...settings, ...placement};
 
                 renderAd(config);
+            });
+
+            // Set `data-ea-publisher` value on static HTML elements if missing
+            [...document.querySelectorAll('[data-ea-type]:not([data-ea-publisher])')].forEach(elm => {
+                elm.setAttribute('data-ea-publisher', settings.publisher);
             });
 
             if (window.ethicalads) {
