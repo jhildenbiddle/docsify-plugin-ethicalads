@@ -64,7 +64,7 @@ Sample ad placements using default and custom styles.
    <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-ethicalads@1"></script>
    ```
 
-   The plugin is available on [jsdelivr](https://www.jsdelivr.com/package/npm/css-vars-ponyfill) (above), [unpkg](https://unpkg.com/browse/css-vars-ponyfill/), and other CDN services that auto-publish npm packages.
+   The plugin is available on [jsdelivr](https://www.jsdelivr.com/package/npm/docsify-plugin-ethicalads) (above), [unpkg](https://unpkg.com/browse/docsify-plugin-ethicalads/), and other CDN services that auto-publish npm packages.
 
    If you prefer to download and bundle the plugin, it is also available on npm:
 
@@ -74,71 +74,262 @@ Sample ad placements using default and custom styles.
 
 1. Review the [options](#options) section and configure as needed:
 
-   ```javascript
-   window.$docsify = {
-     // ...
-     ethicalads: {
-       // Options...
-     }
-   };
+   ```html
+   <script>
+     window.$docsify = {
+       // ...
+       ethicalads: {
+         publisher: 'my-publisher-id',
+         // More options...
+       }
+     };
+   </script>
    ```
 
 ## Usage
 
-TBD
+### Preset placements
+
+The plugin has two preset ad placements: one in the sidebar and one set using a fixed-footer element.
+
+By default, the plugin will render the preset placement in the sidebar. To prevent his behavior, set the [`showSidebar`](#showsidebar) option to `false`:
+
+```javascript
+ethicalads: {
+  publisher: 'my-publisher-id',
+  showSidebar: false
+}
+```
+
+Similarly, to render the preset fixed-footer placement, set [`showFooter`](#showfooter) to `true`:
+
+```javascript
+ethicalads: {
+  publisher: 'my-publisher-id',
+  showFooter: true
+}
+```
+
+### Dynamic placements
+
+The [`placements`](#placements) option allows defining multiple ad placements and configuration options via the `$docisfy.ethicalads` configuration object.
+
+For example, here is a sample configuration for rendering a simpler text-based placement in the sidebar as well as a text-based placement after the first `<h2>` element on every markdown page:
+
+```javascript
+ethicalads: {
+  publisher: 'my-publisher-id',
+  showSidebar: false,
+  placements: [
+    {
+        insertBefore: '.sidebar-nav',
+        type: 'text'
+    },
+    {
+        insertAfter: '#main > h2:first-of-type',
+        type: 'text',
+        keywords: 'foo|bar|baz'
+    }
+  ]
+}
+```
+
+### Static placements
+
+Static ad placements can be added to markdown content using HTML elements as described in the official [EthicalAds documentation](https://ethical-ad-client.readthedocs.io/):
+
+```markdown
+## My heading
+
+Here is some markdown text.
+
+<div data-ea-type="text" data-ea-keywords="foo|bar|baz"></div>
+```
+
+Note that if a `data-ea-publisher` attribute is omitted but a `data-ea-type` attribute is added, the plugin will automatically set the missing publisher attribute to the [`publisher`](#data-attributes) option value.
 
 ## Options
 
-?> Note: For an up-to-date list of options, please see ethicalads's EthicalAds' [official documentation](https://ethical-ad-client.readthedocs.io/).
+Options are set using the `ethicalads` property of the [`window.$docsify`](https://docsify.js.org/#/configuration) configuration object:
 
-Default options are set via the `ethicalads` property of the [`window.$docsify`](https://docsify.js.org/#/configuration) configuration object:
+```javascript
+window.$docsify = {
+  // ...
+  ethicalads: {
+    publisher: 'my-publisher-id',
+    campaignTypes: 'paid|community',
+    class: 'custom-ad'
+  }
+};
+```
+
+Options can also be set on static ad placements using `data-ea` [data attributes](#data-attributes) and standard [HTML attributes](#html-attributes). Note that while options set via JavaScript use “camelCase” names (e.g. `campaignTypes`), options set via data attributes use “kebab-case” (e.g. `campaign-types`).
 
 ```html
-<script>
-  window.$docsify = {
-    // ...
-    ethicalads: {
-      clientURL: 'https://media.ethicalads.io/media/client/ethicalads.min.js',
-      // Ad attributes
-      class: null,
-      id: null,
-      // Ad `data-ea` attributes
-      campaignTypes: null,
-      forceCampaign: null,
-      forcedAd: null,
-      keywords: null,
-      manual: null,
-      publisher: null,
-      style: null,
-      type: null
-      // Ad placements
-      placements: [
-          {
-              class: 'horizontal',
-              insertBefore: '.sidebar-nav',
-              appendTo: null,
-              prependTo: null,
-              insertAfter: null
-          }
-      ],
-    }
-  };
-</script>
+<div
+  data-ea-publisher="my-publisher-id"
+  data-ea-campaign-types="paid|community"
+  class="custom-ad">
+</div>
+```
+
+### Data attributes
+
+- Type: `String`
+
+The following options will set corresponding `data-ea-` data attributes and values on ad placements. These settings will also be used as the default values for all placement configurations found in the [`placements`](#placements) array.
+
+- `publisher`: EthicalAds publisher id for your account
+- `type`: Ad placement type. Value can be either `image` (default) or `text`.
+- `keywords`: A pipe (`|`) separated array of keywords for this ad placement
+- `campaignTypes`: A pipe (`|`) separated array of campaign types
+- `forcedAd`: Specifies an ad placement for testing
+- `forceCampaign`: Specifies a campaign (group of ads) for testing
+
+?> For additional details on these options, see the official [EthicalAds documentation](https://ethical-ad-client.readthedocs.io/).
+
+**Example**
+
+```javascript
+ethicalads: {
+  publisher: 'my-publisher-id',
+  // Data attributes
+  type: 'text',
+  campaignTypes: 'paid|community',
+  keywords: 'foo|bar|baz'
+}
+```
+
+**Output**
+
+```html
+<div
+  data-ea-publisher="my-publisher-id"
+  data-ea-type="text"
+  data-ea-campaign-types="paid|community"
+  data-ea-keywords="foo|bar|baz">
+</div>
+```
+
+### HTML attributes
+
+- Type: `String`
+
+The following options will set corresponding HTML attributes and values on ad placements:
+
+- `class`: CSS class containing custom placement styles
+- `id`: A placement identifier. Recommended to prefix with `ea-` to avoid conflicts.
+- `style`: Custom style declarations. May be used to set plugin-specific custom properties.
+
+**Example**
+
+```javascript
+ethicalads: {
+  publisher: 'my-publisher-id',
+  // HTML attributes
+  class: 'custom-ad',
+  id: 'ea-sidebar',
+  style: '--ea-background: red;'
+}
+```
+
+**Output**
+
+```html
+<div
+  data-ea-publisher="my-publisher-id"
+  class="custom-ad"
+  id="ea-sidebar"
+  style="--ea-background: red;">
+</div>
 ```
 
 ### clientURL
 
-Environment variables for the execution environment. Available under `process.env`.
+The URL of the EthicalAds client library. The plugin will inject this library via a `<script>` element in the document `<head>` automatically.
 
-- Type: `string`
+- Type: `String`
 - Default: `"https://media.ethicalads.io/media/client/ethicalads.min.js"`
 
 ```javascript
 ethicalads: {
+  publisher: 'my-publisher-id',
   // Un-minified version
   clientURL: 'https://media.ethicalads.io/media/client/ethicalads.js'
 }
 ```
+
+### placements
+
+- Type: `Array<Object>`
+- Default: `[]`
+
+An array of objects containing ad placement configurations with the following options:
+
+- All EthicalAds [data attributes](#data-attributes) listed above
+- All [HTML attributes](#html-attributes) listed above
+- `appendTo`: CSS selector or DOM element to *append* the placement to
+- `prependTo`: CSS selector or DOM element to *prepend* the placement to
+- `insertAfter`: CSS selector or DOM element to insert the placement *after*
+- `insertBefore`: CSS selector or DOM element to insert the placement *before*
+
+Note that when these values are set directly under the `$docsify.ethicalads` property they will serve as default values for configurations found in the `placements` array.
+
+**Example**
+
+```javascript
+ethicalads: {
+  publisher: 'my-publisher-id',
+  showSidebar: false,
+  // Default values
+  type: 'text',
+  class: 'custom-ad',
+  placements: [
+    {
+        insertBefore: '.sidebar-nav',
+        type: 'image',
+        class: 'horizontal flat',
+    },
+    {
+        insertAfter: '#main > h2:first-of-type',
+        keywords: 'foo|bar|baz'
+    }
+  ]
+}
+```
+
+**Output**
+
+```html
+<!-- Inserted before `.sidebar-nav` element -->
+<div
+  data-ea-publisher="my-publisher-id"
+  data-ea-type="image"
+  class="horizontal flat">
+</div>
+
+<!-- Inserted after the first <h2> inside of `#main` element -->
+<div
+  data-ea-publisher="my-publisher-id"
+  data-ea-type="text"
+  class="custom-ad"
+  data-ea-keywords="foo|bar|baz">
+</div>
+```
+
+### showFooter
+
+Determines if the preset fixed-footer ad placement will be rendered.
+
+- Type: `Boolean`
+- Default: `false`
+
+### showSidebar
+
+Determines if the preset sidebar ad placement will be rendered.
+
+- Type: `Boolean`
+- Default: `true`
 
 ## Contact & Support
 
