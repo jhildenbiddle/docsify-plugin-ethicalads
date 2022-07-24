@@ -12,17 +12,49 @@ A [docsify.js](https://docsify.js.org) plugin for rendering ad placements from [
 
 ## Demo
 
-TBD
+Sample ad placements using default and custom styles.
+
+<div class="ad-grid">
+  <div
+    data-ea-publisher="jhildenbiddle-github-io"
+    data-ea-type="image">
+  </div>
+  <div
+    data-ea-publisher="jhildenbiddle-github-io"
+    data-ea-type="image"
+    class="horizontal custom-ad1">
+  </div>
+</div>
+
+<div class="ad-grid">
+  <div
+    data-ea-publisher="jhildenbiddle-github-io"
+    data-ea-type="text"
+    style="flex: 1 1 300px;">
+  </div>
+  <div
+    data-ea-publisher="jhildenbiddle-github-io"
+    data-ea-type="text"
+    class="custom-ad2"
+    style="flex: 1 1 300px;">
+  </div>
+</div>
 
 ## Features
 
-- Render ad placements from [EthicalAds](https://www.ethicalads.io/)
+- Render ad placements from [EthicalAds](https://www.ethicalads.io/) within docsify sites
+- Supports multiple ad placements and locations (sidebar, footer, per page, etc.)
+- Configure placements using EthicalAds [API options](https://ethical-ad-client.readthedocs.io/)
+- Customize styles using CSS custom properties
+- Compatible with [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/) themes
 
-?> Like docsify-plugin-ethicalads? Be sure to check out [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable) for your site theme and [docsify-tabs](https://jhildenbiddle.github.io/docsify-tabs/) for tabbed content!
+?> Like this plugin? Be sure to check out [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable) for your site theme, [docsify-tabs](https://jhildenbiddle.github.io/docsify-tabs/) for tabbed content, and [docsify-plugin-runkit](https://jhildenbiddle.github.io/docsify-plugin-runkit/) for live JavaScript REPLs!
 
 ## Installation
 
-1. Add the plugin to your `index.html` after docsify.
+1. Apply to [become a publisher](https://www.ethicalads.io/publishers/) on the [EthicalAds](https://www.ethicalads.io/) network. You will need a valid publisher ID to render ad placements on your site.
+
+1. Add the plugin to your `index.html` after docsify:
 
    ```html
    <!-- docsify (latest v4.x.x)-->
@@ -32,7 +64,15 @@ TBD
    <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-ethicalads@1"></script>
    ```
 
-1. Review the [options](#options) section and configure as needed.
+   The plugin is available on [jsdelivr](https://www.jsdelivr.com/package/npm/css-vars-ponyfill) (above), [unpkg](https://unpkg.com/browse/css-vars-ponyfill/), and other CDN services that auto-publish npm packages.
+
+   If you prefer to download and bundle the plugin, it is also available on npm:
+
+   ```bash
+   npm install docsify-plugin-ethicalads
+   ```
+
+1. Review the [options](#options) section and configure as needed:
 
    ```javascript
    window.$docsify = {
