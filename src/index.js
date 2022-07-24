@@ -61,10 +61,12 @@ function renderAd(config) {
     // Generate ad elements
     for (const [option, insertPosition] of Object.entries(insertMap)) {
         const targetVal = config[option];
-        const targetElm = typeof targetVal === 'string' ? document.querySelector(targetVal) : targetVal;
+        const targetElms = typeof targetVal === 'string' ? document.querySelectorAll(targetVal) : targetVal;
 
-        if (targetElm) {
-            targetElm.insertAdjacentHTML(insertPosition, adElm.outerHTML);
+        if (targetElms) {
+            [...targetElms].forEach(targetElm => {
+                targetElm.insertAdjacentHTML(insertPosition, adElm.outerHTML);
+            });
         }
     }
 }
