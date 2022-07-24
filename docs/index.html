@@ -86,8 +86,8 @@
                 '.*?/changelog': 'https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/CHANGELOG.md',
             },
             auto2top   : true,
-            maxLevel   : 2,
-            subMaxLevel: 2,
+            maxLevel   : 3,
+            subMaxLevel: 3,
 
             // PLUGINS
             // -----------------------------------------------------------------
@@ -95,6 +95,29 @@
                 publisher: 'jhildenbiddle-github-io',
                 // showFooter: true,
                 // showSidebar: false,
+                placements: [
+                    // {
+                    //     insertBefore: '.sidebar-nav',
+                    //     type: 'text'
+                    // },
+                    // {
+                    //     insertBefore: '#main > h2:nth-of-type(2)',
+                    //     type: 'text'
+                    // }
+                    // {
+                    //     insertBefore: '.sidebar-nav',
+                    //     type: 'text',
+                    //     id: 'ea-sidebar',
+                    //     class: 'my-custom-class',
+                    //     style: `
+                    //         --ea-background: #1e293b;
+                    //         --ea-callout-background: #475569;
+                    //         --ea-callout-color: #e2e8f0;
+                    //         --ea-text-color: #f8fafc;
+                    //         --ea-strong-color: #22d3ee;
+                    //     `
+                    // }
+                ]
             },
             executeScript: true,
             search: {
