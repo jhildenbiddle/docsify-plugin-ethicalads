@@ -11,40 +11,30 @@ A [docsify.js](https://docsify.js.org) plugin for rendering ad placements from [
 
 - [Documentation](https://jhildenbiddle.github.io/docsify-plugin-ethicalads)
 
-**Screenshot**
+## Screenshots
 
-TBD
+Sample ad placements shown using default and custom styles.
+
+<a href="https://jhildenbiddle.github.io/docsify-plugin-ethicalads">
+  <picture>
+    <source srcset="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-ads.webp" type="image/webp">
+    <img src="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-ads.jpg" alt="Screenshot of sample ad placements" width="617">
+  </picture>
+</a>
 
 ## Features
 
-- Render ad placements from [EthicalAds](https://www.ethicalads.io/)
+- Render ad placements from [EthicalAds](https://www.ethicalads.io/) within docsify sites
+- Supports multiple ad placements and locations (sidebar, footer, per page, etc.)
+- Configure placements using EthicalAds [API options](https://ethical-ad-client.readthedocs.io/)
+- Customize styles using CSS custom properties
+- Compatible with [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/) themes
 
-## Installation
+> 💡 Like this plugin? Be sure to check out [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable) for your site theme, [docsify-tabs](https://jhildenbiddle.github.io/docsify-tabs/) for tabbed content, and [docsify-plugin-runkit](https://jhildenbiddle.github.io/docsify-plugin-runkit/) for live JavaScript REPLs!
 
-1. Add the plugin to your `index.html` after docsify.
+## Installation & Options
 
-   ```html
-   <!-- docsify (latest v4.x.x)-->
-   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
-
-   <!-- docsify-plugin-ethicalads (latest v1.x.x) -->
-   <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-ethicalads@1"></script>
-   ```
-
-1. Review the [options](#options) section and configure as needed.
-
-   ```javascript
-   window.$docsify = {
-     // ...
-     ethicalads: {
-       // Options...
-     }
-   };
-   ```
-
-## Usage & Options
-
-See the [documentation site](https://jhildenbiddle.github.io/docsify-plugin-ethicalads) for details and demos.
+See the [documentation site](https://jhildenbiddle.github.io/docsify-plugin-ethicalads) for details.
 
 ## Contact & Support
 
