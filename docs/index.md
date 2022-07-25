@@ -1,4 +1,3 @@
-<!-- omit in toc -->
 # docsify-plugin-ethicalads
 
 [![NPM](https://img.shields.io/npm/v/docsify-plugin-ethicalads.svg?style=flat-square)](https://www.npmjs.com/package/docsify-plugin-ethicalads)
@@ -11,7 +10,6 @@
 
 A [docsify.js](https://docsify.js.org) plugin for rendering ad placements from [EthicalAds](https://www.ethicalads.io/).
 
-<!-- omit in toc -->
 ## Demo
 
 Sample ad placements using default and custom styles.
@@ -43,7 +41,6 @@ Sample ad placements using default and custom styles.
   </div>
 </div>
 
-<!-- omit in toc -->
 ## Features
 
 - Render ad placements from [EthicalAds](https://www.ethicalads.io/) within docsify sites
@@ -54,7 +51,6 @@ Sample ad placements using default and custom styles.
 
 ?> Like this plugin? Be sure to check out [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable) for your site theme, [docsify-tabs](https://jhildenbiddle.github.io/docsify-tabs/) for tabbed content, and [docsify-plugin-runkit](https://jhildenbiddle.github.io/docsify-plugin-runkit/) for live JavaScript REPLs!
 
-<!-- omit in toc -->
 ## Installation
 
 1. Apply to [become a publisher](https://www.ethicalads.io/publishers/) on the [EthicalAds](https://www.ethicalads.io/) network. You will need a valid publisher ID to render ad placements on your site.
@@ -91,10 +87,8 @@ Sample ad placements using default and custom styles.
 
 1. Review the [Usage](#usage) and [Options](#options) sections for implementation and configuration details.
 
-<!-- omit in toc -->
 ## Usage
 
-<!-- omit in toc -->
 ### Preset placements
 
 The plugin has two preset ad placements: one in the sidebar and one set using a fixed-footer element.
@@ -117,7 +111,6 @@ ethicalads: {
 }
 ```
 
-<!-- omit in toc -->
 ### Dynamic placements
 
 The [`placements`](#placements) option allows defining multiple ad placements and configuration options via the `$docsify.ethicalads` configuration object.
@@ -141,13 +134,11 @@ ethicalads: {
 }
 ```
 
-<!-- omit in toc -->
 ### Static placements
 
 Static ad placements can be added to markdown content using HTML elements as described in the official [EthicalAds documentation](https://ethical-ad-client.readthedocs.io/):
 
 ```markdown
-<!-- omit in toc -->
 ## My heading
 
 Here is some markdown text.
@@ -157,15 +148,7 @@ Here is some markdown text.
 
 Note that if a `data-ea-publisher` attribute is omitted but a `data-ea-type` attribute is added, the plugin will automatically set the missing publisher attribute to the [`publisher`](#data-attributes) option value.
 
-<!-- omit in toc -->
 ## Options
-
-- [Data attributes](#data-attributes)
-- [HTML attributes](#html-attributes)
-- [clientURL](#clienturl)
-- [placements](#placements)
-- [showFooter](#showfooter)
-- [showSidebar](#showsidebar)
 
 Options are set using the `ethicalads` property of the [`window.$docsify`](https://docsify.js.org/#/configuration) configuration object:
 
@@ -202,6 +185,7 @@ The following options will set corresponding `data-ea-` data attributes and valu
 - `eaCampaignTypes`: A pipe (`|`) separated array of campaign types
 - `eaForcedAd`: Specifies an ad placement for testing
 - `eaForceCampaign`: Specifies a campaign (group of ads) for testing
+- `eaStyle`: Applies EthicalAds placement style. Value can be `fixedfooter` or `stickybox`.
 
 ?> For additional details on these options, see the official [EthicalAds documentation](https://ethical-ad-client.readthedocs.io/).
 
@@ -386,10 +370,11 @@ ethicalads: {
 }
 ```
 
-<!-- omit in toc -->
 ## Customization
 
-<!-- omit in toc -->
+- [Classes](#classes)
+- [Custom Properties](#custom-properties)
+
 ### Classes
 
 EthicalAds offers several CSS classes for applying themes, setting orientation, and accommodating for dark mode. Classes from different groups (theme, dark mode, and orientation) can be combined as needed (e.g, `bordered horizontal` or `dark flat`).
@@ -444,7 +429,6 @@ ethicalads: {
   </div>
 </div>
 
-<!-- omit in toc -->
 ### Custom Properties
 
 Ad placement styles can be customized using the CSS custom properties. Custom properties make it easy to apply styles to individual or groups of placements without the need to write complex CSS.
@@ -523,14 +507,12 @@ ethicalads: {
 </div>
 ```
 
-<!-- omit in toc -->
 ## Contact & Support
 
 - Create a [GitHub issue](https://github.com/jhildenbiddle/docsify-plugin-ethicalads/issues) for bug reports, feature requests, or questions
 - Follow [@jhildenbiddle](https://twitter.com/jhildenbiddle) for announcements
 - Add a ⭐️ [star on GitHub](https://github.com/jhildenbiddle/docsify-plugin-ethicalads) or 🐦 [tweet](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fjhildenbiddle%2Fdocsify-plugin-ethicalads&hashtags=docsify,developers,frontend,javascript) to support the project!
 
-<!-- omit in toc -->
 ## License
 
 This project is licensed under the [MIT license](https://github.com/jhildenbiddle/docsify-plugin-ethicalads/blob/main/LICENSE).
