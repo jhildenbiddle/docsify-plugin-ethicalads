@@ -24,7 +24,8 @@ Sample ad placements using default and custom styles.
   <div
     data-ea-publisher="jhildenbiddle-github-io"
     data-ea-type="image"
-    class="horizontal custom-ad1">
+    class="dark horizontal"
+    style="--ea-strong-color: #22d3ee;">
   </div>
 </div>
 
@@ -37,7 +38,7 @@ Sample ad placements using default and custom styles.
   <div
     data-ea-publisher="jhildenbiddle-github-io"
     data-ea-type="text"
-    class="custom-ad2"
+    class="custom-ad"
     style="flex: 1 1 300px;">
   </div>
 </div>

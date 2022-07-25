@@ -33,16 +33,10 @@
             align-items: center;
             justify-content: space-evenly;
             gap: 1em 2em;
-            margin: 1em 1em 1.5em 1em;
+            margin: 1.5em 0;
         }
 
-        .custom-ad1 {
-            --ea-background: #1e293b;
-            --ea-color: #f8fafc;
-            --ea-strong-color: #22d3ee;
-        }
-
-        .custom-ad2 {
+        .custom-ad {
             /* --ea-background: linear-gradient(120deg, #753a88, #9a4086, #b84981, #d2587a, #e56c73, #f3826d, #fb9b69, #ffb56b); */
             --ea-background: linear-gradient(68.3deg, rgba(236,54,110,1) 0.4%, rgba(245,177,97,1) 100.2%);
             --ea-color: rgba(255, 255, 255, 0.85);
@@ -56,17 +50,12 @@
         }
 
         .sidebar {
-            --ea-background: #ededed;
-            --ea-callout-background: var(--sidebar-border-color);
+            --ea-background: hsl(var(--mono-hue), var(--mono-saturation), 94%);
+            --ea-callout-background: hsl(var(--mono-hue), var(--mono-saturation), 89%);
             --ea-margin: 1em 0 0 0;
-
-            /* Docsify-themeable Website */
-            --ea-background: hsl(var(--theme-hue), 15%, 94%);
-            --ea-callout-background: hsl(var(--theme-hue), 13%, 87%);
         }
 
-        .sidebar [data-ea-publisher].flat,
-        .sidebar [data-ea-type].flat {
+        .sidebar [data-ea-publisher][class].flat {
             --ea-margin: 0 -25px;
         }
     </style>
@@ -96,7 +85,8 @@
                 // showFooter: true,
                 // showSidebar: false,
                 // showSidebar: {
-                //     style: '--ea-background: red'
+                //     class: 'dark flat horizontal',
+                //     style: '--ea-strong-color: #38bdf8;'
                 // },
                 placements: [
                     // {
