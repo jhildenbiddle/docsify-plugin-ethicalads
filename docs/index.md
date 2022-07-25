@@ -120,7 +120,7 @@ ethicalads: {
 <!-- omit in toc -->
 ### Dynamic placements
 
-The [`placements`](#placements) option allows defining multiple ad placements and configuration options via the `$docisfy.ethicalads` configuration object.
+The [`placements`](#placements) option allows defining multiple ad placements and configuration options via the `$docsify.ethicalads` configuration object.
 
 For example, here is a sample configuration for rendering a simpler text-based placement in the sidebar as well as a text-based placement after the first `<h2>` element on every markdown page:
 
@@ -329,31 +329,208 @@ ethicalads: {
 <div
   data-ea-publisher="my-publisher-id"
   data-ea-type="text"
-  class="custom-ad"
-  data-ea-keywords="foo|bar|baz">
+  class="custom-ad">
 </div>
 ```
 
 ### showFooter
 
-Determines if the preset fixed-footer ad placement will be rendered.
-
-- Type: `Boolean`
+- Type: `Boolean|Object`
 - Default: `false`
+
+Determines if the preset fixed-footer ad placement will be rendered. When set to `true`, a "fixed footer" ad placement will be rendered on the bottom of the screen.
+
+```js
+{
+  appendTo: 'main',
+  eaStyle: 'fixedfooter',
+  eaType: 'text',
+  class: 'bordered'
+}
+```
+
+To disable rending this preset ad placement, set this value to `false`. To customize this ad placement, set the value to a configuration object as described in the [`placements`](#placements) section. This configuration will be merge with the preset configuration above, so only modified values need to be specified.
+
+```javascript
+ethicalads: {
+  eaPublisher: 'my-publisher-id',
+  showSidebar: {
+    eaKeywords: 'foo|bar|baz'
+  }
+}
+```
 
 ### showSidebar
 
-Determines if the preset sidebar ad placement will be rendered.
-
-- Type: `Boolean`
+- Type: `Boolean|Object`
 - Default: `true`
 
+Determines if the preset sidebar ad placement will be rendered. When set to `true`, an ad placement will be rendered in the sidebar above the navigation menu with the following configuration:
+
+```js
+{
+  insertBefore: '.sidebar-nav',
+  eaType: 'image'
+  class: 'horizontal flat',
+}
+```
+
+To disable rending this preset ad placement, set this value to `false`. To customize this ad placement, set the value to a configuration object as described in the [`placements`](#placements) section. This configuration will be merge with the preset configuration above, so only modified values need to be specified.
+
+```javascript
+ethicalads: {
+  eaPublisher: 'my-publisher-id',
+  showSidebar: {
+    eaKeywords: 'foo|bar|baz'
+  }
+}
+```
+
+<!-- omit in toc -->
+## Customization
+
+<!-- omit in toc -->
+### Classes
+
+EthicalAds offers several CSS classes for applying themes, setting orientation, and accommodating for dark mode. Classes from different groups (theme, dark mode, and orientation) can be combined as needed (e.g, `bordered horizontal` or `dark flat`).
+
+- **Theme classes**
+  - `raised`: Includes drop-shadow
+  - `flat`: No drop-shadow or right/left margin in `.sidebar`
+  - `bordered`: Includes 1px border
+- **Dark classes**
+  - `dark`: Uses `--ea-dark` custom properties
+  - `adaptive`: Uses `--ea-dark` custom properties when OS-level "dark mode" is detected
+- **Orientation classes**
+  - `horizontal`: Renders images to the left of text
+
+```javascript
+ethicalads: {
+  eaPublisher: 'my-publisher-id',
+  class: 'dark flat horizontal'
+}
+```
+
+```html
+<div data-ea-type="image" class="dark flat horizontal"></div>
+```
+
+**Examples**
+
+<div class="ad-grid" style="align-items: flex-start; justify-content: flex-start;">
+  <div>
+    <p><strong>raised</strong> (default)</p>
+    <div data-ea-type="image" class="raised"></div>
+  </div>
+  <div>
+    <p><strong>flat</strong></p>
+    <div data-ea-type="image" class="flat"></div>
+  </div>
+  <div>
+    <p><strong>bordered</strong></p>
+    <div data-ea-type="image" class="bordered"></div>
+  </div>
+  <div>
+    <p><strong>dark</strong></p>
+    <div data-ea-type="image" class="dark"></div>
+  </div>
+  <div>
+    <p><strong>adaptive</strong></p>
+    <div data-ea-type="image" class="adaptive"></div>
+  </div>
+  <div>
+    <p><strong>horizontal</strong></p>
+    <div data-ea-type="image" class="horizontal"></div>
+  </div>
+</div>
+
+<!-- omit in toc -->
+### Custom Properties
+
+Ad placement styles can be customized using the CSS custom properties. Custom properties make it easy to apply styles to individual or groups of placements without the need to write complex CSS.
+
+```css
+/* Default values shown */
+:root {
+    --ea-background: #f7f7f7;
+    --ea-border-color: #ededed;
+    --ea-border-radius: 4px;
+    --ea-callout-background: #ededed;
+    --ea-callout-color: 'inherit';
+    --ea-callout-font-size: 10px;
+    --ea-color: #444;
+    --ea-font-size: 12px;
+    --ea-line-height: 1.4;
+    --ea-margin: 1em;
+    --ea-sidebar-inset: 300px;
+    --ea-sidebar-toggle-inset: 45px;
+    --ea-strong-color: var(--theme-color, #42b983);
+
+    /* Dark */
+    --ea-dark-background: #1f282d;
+    --ea-dark-border-color: #384951;
+    --ea-dark-callout-background: #384951;
+    --ea-dark-callout-color: 'inherit';
+    --ea-dark-color: #fff;
+    --ea-dark-strong-color: var(--ea-strong-color);
+}
+```
+
+?> The default values shown above are slightly modified when a [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/) theme is detected. See the [Plugin Styles](https://jhildenbiddle.github.io/docsify-themeable/#/customization?id=plugin-styles) section of the docsify-themeable documentation for details.
+
+To customize styles using these properties, create a `<style>` tag within the `<body>` element of your `index.html` file. This ensures that your custom styles will override those set by EthicalAds or this plugin.
+
+```html
+  <style>
+    /* Custom styles */
+  </style>
+</body>
+</html>
+```
+
+There are multiple ways to apply custom styles. CSS classes can be used to apply new values using the [`class`](#html-attributes) attribute. Classes can also be applied indirectly by targeting existing attributes or by creating "scoped" styles that apply to placements within a specified container.
+
+```css
+/* Applied to placements with a class of "custom-ad" */
+.custom-ad {
+  --ea-background: red;
+}
+
+/* Applied to text-based placements  */
+[data-ea-type="text"] {
+  --ea-background: blue;
+}
+
+/* Applied to placements within the sidebar  */
+.sidebar {
+  --ea-background: green;
+}
+```
+
+Custom styles can also be applied as "inline" styles via the [`style`](#html-attributes) attribute.
+
+```javascript
+ethicalads: {
+  eaPublisher: 'my-publisher-id',
+  style: '--ea-background: red;'
+}
+```
+
+```html
+<div
+  data-ea-publisher="my-publisher-id"
+  style="--ea-background: red;">
+</div>
+```
+
+<!-- omit in toc -->
 ## Contact & Support
 
 - Create a [GitHub issue](https://github.com/jhildenbiddle/docsify-plugin-ethicalads/issues) for bug reports, feature requests, or questions
 - Follow [@jhildenbiddle](https://twitter.com/jhildenbiddle) for announcements
 - Add a ⭐️ [star on GitHub](https://github.com/jhildenbiddle/docsify-plugin-ethicalads) or 🐦 [tweet](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fjhildenbiddle%2Fdocsify-plugin-ethicalads&hashtags=docsify,developers,frontend,javascript) to support the project!
 
+<!-- omit in toc -->
 ## License
 
 This project is licensed under the [MIT license](https://github.com/jhildenbiddle/docsify-plugin-ethicalads/blob/main/LICENSE).
