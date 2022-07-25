@@ -1,7 +1,21 @@
 import './style.css';
 
 const defaults = {
-    clientURL: 'https://media.ethicalads.io/media/client/ethicalads.min.js',
+    // Data attributes
+    eaCampaignTypes: null,
+    eaForceCampaign: null,
+    eaForcedAd: null,
+    eaKeywords: null,
+    eaPublisher: null,
+    eaStyle: null,
+    eaType: null,
+    // HTML attributes
+    class: null,
+    id: null,
+    style: null,
+    // Placements
+    showFooter: false,
+    showSidebar: true,
     placements: [
         {
             // insertBefore: null,
@@ -10,37 +24,19 @@ const defaults = {
             // insertAfter: null
         }
     ],
-    // Default placements
-    showFooter: false,
-    showSidebar: true,
-    // Ad attributes
-    class: null,
-    id: null,
-    // Ad `data-ea` attributes
-    campaignTypes: null,
-    forceCampaign: null,
-    forcedAd: null,
-    keywords: null,
-    manual: null,
-    publisher: null,
-    style: null,
-    type: null
+    // Plugin
+    clientURL: 'https://media.ethicalads.io/media/client/ethicalads.min.js'
 };
 
+function camelToDashCase(str) {
+    return str.replace(/([a-z])([A-Z])/g, m => m[0] + '-' + m[1].toLowerCase());
+}
+
+function isObject(obj) {
+    return Boolean(obj && obj.constructor.name === 'Object');
+}
+
 function renderAd(config) {
-    const attrs = [
-        'class',
-        'id',
-        'style'
-    ].filter(v => config[v]);
-    const dataAttrs = [
-        'campaignTypes',
-        'forceCampaign',
-        'forcedAd',
-        'keywords',
-        'publisher',
-        'type'
-    ].filter(v => config[v]);
     const insertMap = {
         appendTo: 'beforeend',
         prependTo: 'afterbegin',
@@ -50,12 +46,20 @@ function renderAd(config) {
 
     const adElm = document.createElement('div');
 
-    attrs.forEach(v => adElm.setAttribute(v, config[v]));
-    dataAttrs.forEach(v => {
-        // camelCase to dash-case
-        const dataAttr = v.replace(/([a-z])([A-Z])/g, m => m[0] + '-' + m[1].toLowerCase());
+    // Data attributes
+    for (const [key, value] of Object.entries(config)) {
+        if (/^ea[A-Z]/.test(key) && config[key]) {
+            const dataAttr = camelToDashCase(key);
 
-        adElm.setAttribute(`data-ea-${dataAttr}`, config[v]);
+            adElm.setAttribute(`data-${dataAttr}`, value);
+        }
+    }
+
+    // HTML attributes
+    ['class', 'id', 'style'].forEach(attr => {
+        if (config[attr]) {
+            adElm.setAttribute(attr, config[attr]);
+        }
     });
 
     // Generate ad elements
@@ -76,21 +80,29 @@ function renderAd(config) {
     const docsifyEthicalAds = function(hook, vm) {
         const settings = { ...defaults, ...(window.$docsify.ethicalads || {})};
 
-        // Push default ad placements
+        // Preset: fixedfooter
         if (settings.showFooter) {
-            settings.placements.unshift({
+            const defaults = {
                 appendTo: 'main',
-                class: 'bordered',
-                style: 'fixedfooter',
-                type: 'text'
-            });
+                eaStyle: 'fixedfooter',
+                eaType: 'text',
+                class: 'bordered'
+            };
+            const config = isObject(settings.showFooter) ? { ...defaults, ...settings.showFooter } : defaults;
+
+            settings.placements.unshift(config);
         }
+
+        // Preset: sidebar
         if (settings.showSidebar) {
-            settings.placements.unshift({
+            const defaults = {
                 insertBefore: '.sidebar-nav',
-                class: 'horizontal flat',
-                type: 'image'
-            });
+                eaType: 'image',
+                class: 'horizontal flat'
+            };
+            const config = isObject(settings.showSidebar) ? { ...defaults, ...settings.showSidebar } : defaults;
+
+            settings.placements.unshift(config);
         }
 
         hook.ready(function() {
@@ -114,7 +126,7 @@ function renderAd(config) {
 
             // Set `data-ea-publisher` value on static HTML elements if missing
             [...document.querySelectorAll('[data-ea-type]:not([data-ea-publisher])')].forEach(elm => {
-                elm.setAttribute('data-ea-publisher', settings.publisher);
+                elm.setAttribute('data-ea-publisher', settings.eaPublisher);
             });
 
             if (window.ethicalads) {

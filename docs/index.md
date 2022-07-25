@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # docsify-plugin-ethicalads
 
 [![NPM](https://img.shields.io/npm/v/docsify-plugin-ethicalads.svg?style=flat-square)](https://www.npmjs.com/package/docsify-plugin-ethicalads)
@@ -10,6 +11,7 @@
 
 A [docsify.js](https://docsify.js.org) plugin for rendering ad placements from [EthicalAds](https://www.ethicalads.io/).
 
+<!-- omit in toc -->
 ## Demo
 
 Sample ad placements using default and custom styles.
@@ -40,21 +42,23 @@ Sample ad placements using default and custom styles.
   </div>
 </div>
 
+<!-- omit in toc -->
 ## Features
 
 - Render ad placements from [EthicalAds](https://www.ethicalads.io/) within docsify sites
-- Supports multiple ad placements and locations (sidebar, footer, per page, etc.)
+- Supports multiple ad placements and locations
 - Configure placements using EthicalAds [API options](https://ethical-ad-client.readthedocs.io/)
 - Customize styles using CSS custom properties
 - Compatible with [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/) themes
 
 ?> Like this plugin? Be sure to check out [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable) for your site theme, [docsify-tabs](https://jhildenbiddle.github.io/docsify-tabs/) for tabbed content, and [docsify-plugin-runkit](https://jhildenbiddle.github.io/docsify-plugin-runkit/) for live JavaScript REPLs!
 
+<!-- omit in toc -->
 ## Installation
 
 1. Apply to [become a publisher](https://www.ethicalads.io/publishers/) on the [EthicalAds](https://www.ethicalads.io/) network. You will need a valid publisher ID to render ad placements on your site.
 
-1. Add the plugin to your `index.html` after docsify:
+1. Add the plugin to your `index.html` after docsify. The plugin is available on [jsdelivr](https://www.jsdelivr.com/package/npm/docsify-plugin-ethicalads) (below), [unpkg](https://unpkg.com/browse/docsify-plugin-ethicalads/), and other CDN services that auto-publish npm packages.
 
    ```html
    <!-- docsify (latest v4.x.x)-->
@@ -64,30 +68,32 @@ Sample ad placements using default and custom styles.
    <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-ethicalads@1"></script>
    ```
 
-   The plugin is available on [jsdelivr](https://www.jsdelivr.com/package/npm/docsify-plugin-ethicalads) (above), [unpkg](https://unpkg.com/browse/docsify-plugin-ethicalads/), and other CDN services that auto-publish npm packages.
-
-   If you prefer to download and bundle the plugin, it is also available on npm:
+   The plugin is also available for installation from npm:
 
    ```bash
    npm install docsify-plugin-ethicalads
    ```
 
-1. Review the [options](#options) section and configure as needed:
+1. Add an `ethicalads` property to the [`window.$docsify`](https://docsify.js.org/#/configuration) configuration object in your `index.html` file along with your publisher ID:
 
    ```html
    <script>
      window.$docsify = {
        // ...
        ethicalads: {
-         publisher: 'my-publisher-id',
+         eaPublisher: 'my-publisher-id',
          // More options...
        }
      };
    </script>
    ```
 
+1. Review the [Usage](#usage) and [Options](#options) sections for implementation and configuration details.
+
+<!-- omit in toc -->
 ## Usage
 
+<!-- omit in toc -->
 ### Preset placements
 
 The plugin has two preset ad placements: one in the sidebar and one set using a fixed-footer element.
@@ -96,7 +102,7 @@ By default, the plugin will render the preset placement in the sidebar. To preve
 
 ```javascript
 ethicalads: {
-  publisher: 'my-publisher-id',
+  eaPublisher: 'my-publisher-id',
   showSidebar: false
 }
 ```
@@ -105,11 +111,12 @@ Similarly, to render the preset fixed-footer placement, set [`showFooter`](#show
 
 ```javascript
 ethicalads: {
-  publisher: 'my-publisher-id',
+  eaPublisher: 'my-publisher-id',
   showFooter: true
 }
 ```
 
+<!-- omit in toc -->
 ### Dynamic placements
 
 The [`placements`](#placements) option allows defining multiple ad placements and configuration options via the `$docisfy.ethicalads` configuration object.
@@ -118,27 +125,28 @@ For example, here is a sample configuration for rendering a simpler text-based p
 
 ```javascript
 ethicalads: {
-  publisher: 'my-publisher-id',
+  eaPublisher: 'my-publisher-id',
   showSidebar: false,
   placements: [
     {
         insertBefore: '.sidebar-nav',
-        type: 'text'
+        eaType: 'text'
     },
     {
         insertAfter: '#main > h2:first-of-type',
-        type: 'text',
-        keywords: 'foo|bar|baz'
+        eaType: 'text'
     }
   ]
 }
 ```
 
+<!-- omit in toc -->
 ### Static placements
 
 Static ad placements can be added to markdown content using HTML elements as described in the official [EthicalAds documentation](https://ethical-ad-client.readthedocs.io/):
 
 ```markdown
+<!-- omit in toc -->
 ## My heading
 
 Here is some markdown text.
@@ -148,7 +156,15 @@ Here is some markdown text.
 
 Note that if a `data-ea-publisher` attribute is omitted but a `data-ea-type` attribute is added, the plugin will automatically set the missing publisher attribute to the [`publisher`](#data-attributes) option value.
 
+<!-- omit in toc -->
 ## Options
+
+- [Data attributes](#data-attributes)
+- [HTML attributes](#html-attributes)
+- [clientURL](#clienturl)
+- [placements](#placements)
+- [showFooter](#showfooter)
+- [showSidebar](#showsidebar)
 
 Options are set using the `ethicalads` property of the [`window.$docsify`](https://docsify.js.org/#/configuration) configuration object:
 
@@ -156,8 +172,8 @@ Options are set using the `ethicalads` property of the [`window.$docsify`](https
 window.$docsify = {
   // ...
   ethicalads: {
-    publisher: 'my-publisher-id',
-    campaignTypes: 'paid|community',
+    eaPublisher: 'my-publisher-id',
+    eaCampaignTypes: 'paid|community',
     class: 'custom-ad'
   }
 };
@@ -179,12 +195,12 @@ Options can also be set on static ad placements using `data-ea` [data attributes
 
 The following options will set corresponding `data-ea-` data attributes and values on ad placements. These settings will also be used as the default values for all placement configurations found in the [`placements`](#placements) array.
 
-- `publisher`: EthicalAds publisher id for your account
-- `type`: Ad placement type. Value can be either `image` (default) or `text`.
-- `keywords`: A pipe (`|`) separated array of keywords for this ad placement
-- `campaignTypes`: A pipe (`|`) separated array of campaign types
-- `forcedAd`: Specifies an ad placement for testing
-- `forceCampaign`: Specifies a campaign (group of ads) for testing
+- `eaPublisher`: EthicalAds publisher id for your account
+- `eaType`: Ad placement type. Value can be either `image` (default) or `text`.
+- `eaKeywords`: A pipe (`|`) separated array of keywords for this ad placement
+- `eaCampaignTypes`: A pipe (`|`) separated array of campaign types
+- `eaForcedAd`: Specifies an ad placement for testing
+- `eaForceCampaign`: Specifies a campaign (group of ads) for testing
 
 ?> For additional details on these options, see the official [EthicalAds documentation](https://ethical-ad-client.readthedocs.io/).
 
@@ -192,11 +208,10 @@ The following options will set corresponding `data-ea-` data attributes and valu
 
 ```javascript
 ethicalads: {
-  publisher: 'my-publisher-id',
-  // Data attributes
-  type: 'text',
-  campaignTypes: 'paid|community',
-  keywords: 'foo|bar|baz'
+  eaPublisher: 'my-publisher-id',
+  eaType: 'text',
+  eaCampaignTypes: 'paid|community',
+  eaKeywords: 'foo|bar|baz'
 }
 ```
 
@@ -225,7 +240,8 @@ The following options will set corresponding HTML attributes and values on ad pl
 
 ```javascript
 ethicalads: {
-  publisher: 'my-publisher-id',
+  // Data attributes
+  eaPublisher: 'my-publisher-id',
   // HTML attributes
   class: 'custom-ad',
   id: 'ea-sidebar',
@@ -246,14 +262,14 @@ ethicalads: {
 
 ### clientURL
 
-The URL of the EthicalAds client library. The plugin will inject this library via a `<script>` element in the document `<head>` automatically.
-
 - Type: `String`
 - Default: `"https://media.ethicalads.io/media/client/ethicalads.min.js"`
 
+The URL of the EthicalAds client library. The plugin will inject this library via a `<script>` element in the document `<head>` automatically.
+
 ```javascript
 ethicalads: {
-  publisher: 'my-publisher-id',
+  eaPublisher: 'my-publisher-id',
   // Un-minified version
   clientURL: 'https://media.ethicalads.io/media/client/ethicalads.js'
 }
@@ -279,20 +295,20 @@ Note that when these values are set directly under the `$docsify.ethicalads` pro
 
 ```javascript
 ethicalads: {
-  publisher: 'my-publisher-id',
+  eaPublisher: 'my-publisher-id', // Default value
+  eaType: 'text', // Default value
+  class: 'custom-ad', // Default value
+  // Placements
   showSidebar: false,
-  // Default values
-  type: 'text',
-  class: 'custom-ad',
   placements: [
     {
         insertBefore: '.sidebar-nav',
-        type: 'image',
+        // Override default values
+        eaType: 'image',
         class: 'horizontal flat',
     },
     {
-        insertAfter: '#main > h2:first-of-type',
-        keywords: 'foo|bar|baz'
+        insertAfter: '#main > h2:first-of-type'
     }
   ]
 }

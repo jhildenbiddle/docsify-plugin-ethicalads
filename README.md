@@ -25,7 +25,7 @@ Sample ad placements using default and custom styles.
 ## Features
 
 - Render ad placements from [EthicalAds](https://www.ethicalads.io/) within docsify sites
-- Supports multiple ad placements and locations (sidebar, footer, per page, etc.)
+- Supports multiple ad placements and locations
 - Configure placements using EthicalAds [API options](https://ethical-ad-client.readthedocs.io/)
 - Customize styles using CSS custom properties
 - Compatible with [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/) themes
