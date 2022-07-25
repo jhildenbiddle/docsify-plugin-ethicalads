@@ -19,7 +19,7 @@
     --ea-dark-background: #1f282d;
     --ea-dark-border-color: #384951;
     --ea-dark-callout-background: #384951;
-    --ea-dark-callout-color: #f5f5f5;
+    --ea-dark-callout-color: 'inherit';
     --ea-dark-color: #fff;
     --ea-dark-strong-color: var(--ea-strong-color);
 }
@@ -84,6 +84,12 @@
 
 /* Global - Contained Callout  */
 /* ---------------------------------------- */
+.sidebar [data-ea-publisher][class] .ea-placement[class],
+[data-ea-style="stickybox"] .ea-placement[class] {
+    /* Allows callout color to be set to 'inherit' */
+    color: var(--ea-color);
+}
+
 .sidebar [data-ea-publisher][class] .ea-placement[class] .ea-callout,
 [data-ea-style="stickybox"] .ea-placement[class] .ea-callout {
     position: absolute;
