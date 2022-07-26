@@ -11,7 +11,7 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"> -->
 </head>
 
-<body>
+<body class="">
     <div id="app"></div>
 
     <style>
@@ -31,27 +31,32 @@
         body.ready-fix .sidebar [data-ea-type].flat {
             --ea-margin: 0 -25px 0 -25px;
         }
-    </style>
-    <style>
-        /* Custom Style */
-        :root {
-            /* --ea-background: red; */
-            /* --ea-border-color: purple; */
-            /* --ea-border-radius: 20px; */
-            /* --ea-callout-background: #333; */
-            /* --ea-callout-color: yellow; */
-            /* --ea-callout-font-size: 16px; */
-            /* --ea-color: #fff; */
-            /* --ea-font-size: 20px; */
-            /* --ea-margin: 1em 0 0 0; */
-            /* --ea-strong-color: orange; */
+
+        /* Custom styles test */
+        body.test {
+            --ea-background: red;
+            --ea-border-color: purple;
+            --ea-border-radius: 20px;
+            --ea-callout-background: #333;
+            --ea-callout-color: yellow;
+            --ea-callout-font-size: 16px;
+            --ea-color: #fff;
+            --ea-font-size: 20px;
+            --ea-margin: 1em 0 0 0;
+            --ea-strong-color: orange;
         }
 
-        #main {}
+        body.test #main {
+            --ea-background: green;
+        }
 
-        [data-ea-style="stickybox"] {}
+        body.test [data-ea-style="stickybox"] {
+            --ea-background: blue;
+        }
 
-        [data-ea-style="fixedfooter"] {}
+        body.test [data-ea-style="fixedfooter"] {
+            --ea-background: purple;
+        }
     </style>
 
     <script>
@@ -98,7 +103,16 @@
                     { appendTo: '#text-ads-target', eaType: 'text', class: 'flat' },
                     // Global
                     { appendTo: '#stickybox-target', eaStyle: 'stickybox', class: 'bordered' },
-                    { appendTo: 'main', type: 'text', eaStyle: 'fixedfooter', class: 'bordered' },
+                    { appendTo: 'main', eaType: 'text', eaStyle: 'fixedfooter', class: 'bordered' },
+                    // {
+                    //     insertAfter: '#main > h2',
+                    //     eaType: 'text'
+                    // },
+                    // {
+                    //     // Appends placement to `#main`
+                    //     appendTo: '#main',
+                    //     eaType: 'text'
+                    // }
                 ]
             },
             executeScript: true,
