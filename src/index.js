@@ -37,8 +37,10 @@ function isObject(obj) {
 }
 
 function renderAd(config) {
-    const footerAd = document.querySelector('[data-ea-style="fixedfooter"]');
     const sidebarAd = document.querySelector('.sidebar [data-ea-publisher].loaded');
+    const isSkipFixedFooterAd = config.eaStyle === 'fixedfooter' && document.querySelector('[data-ea-style="fixedfooter"]');
+    const isSkipStickyBoxAd = config.eaStyle === 'stickybox' && document.querySelector('[data-ea-style="stickybox"]');
+
     const insertMap = {
         appendTo: 'beforeend',
         prependTo: 'afterbegin',
@@ -46,8 +48,8 @@ function renderAd(config) {
         insertAfter: 'afterend'
     };
 
-    // Skip rendering of duplicate fixed-footer placement
-    if (footerAd && config.eaStyle === 'fixedfooter') {
+    // Skip rendering of duplicate special placement
+    if (isSkipFixedFooterAd || isSkipStickyBoxAd) {
         return;
     }
 
