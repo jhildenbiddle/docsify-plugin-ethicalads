@@ -405,27 +405,51 @@ ethicalads: {
 <div class="ad-grid" style="align-items: flex-start; justify-content: flex-start;">
   <div>
     <p><strong>raised</strong> (default)</p>
-    <div data-ea-type="image" class="raised"></div>
+    <div
+      data-ea-publisher="jhildenbiddle-github-io"
+      data-ea-type="image"
+      class="raised">
+    </div>
   </div>
   <div>
     <p><strong>flat</strong></p>
-    <div data-ea-type="image" class="flat"></div>
+    <div
+      data-ea-publisher="jhildenbiddle-github-io"
+      data-ea-type="image"
+      class="flat">
+    </div>
   </div>
   <div>
     <p><strong>bordered</strong></p>
-    <div data-ea-type="image" class="bordered"></div>
+    <div
+      data-ea-publisher="jhildenbiddle-github-io"
+      data-ea-type="image"
+      class="bordered">
+    </div>
   </div>
   <div>
     <p><strong>dark</strong></p>
-    <div data-ea-type="image" class="dark"></div>
+    <div
+      data-ea-publisher="jhildenbiddle-github-io"
+      data-ea-type="image"
+      class="dark">
+    </div>
   </div>
   <div>
     <p><strong>adaptive</strong></p>
-    <div data-ea-type="image" class="adaptive"></div>
+    <div
+      data-ea-publisher="jhildenbiddle-github-io"
+      data-ea-type="image"
+      class="adaptive">
+    </div>
   </div>
   <div>
     <p><strong>horizontal</strong></p>
-    <div data-ea-type="image" class="horizontal"></div>
+    <div
+      data-ea-publisher="jhildenbiddle-github-io"
+      data-ea-type="image"
+      class="horizontal">
+    </div>
   </div>
 </div>
 
