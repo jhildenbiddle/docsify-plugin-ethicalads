@@ -38,7 +38,7 @@ function isObject(obj) {
 
 function renderAd(config) {
     const footerAd = document.querySelector('[data-ea-style="fixedfooter"]');
-    const sidebarAd = document.querySelector('.sidebar [data-ea-publisher]');
+    const sidebarAd = document.querySelector('.sidebar [data-ea-publisher].loaded');
     const insertMap = {
         appendTo: 'beforeend',
         prependTo: 'afterbegin',
