@@ -1,5 +1,3 @@
-// TODO: Prevent multiple ads when navigating to new pages (sidebar and footer)
-
 import './style.css';
 
 const defaults = {
@@ -39,12 +37,19 @@ function isObject(obj) {
 }
 
 function renderAd(config) {
+    const footerAd = document.querySelector('[data-ea-style="fixedfooter"]');
+    const sidebarAd = document.querySelector('.sidebar [data-ea-publisher]');
     const insertMap = {
         appendTo: 'beforeend',
         prependTo: 'afterbegin',
         insertBefore: 'beforebegin',
         insertAfter: 'afterend'
     };
+
+    // Skip rendering of duplicate fixed-footer placement
+    if (footerAd && config.eaStyle === 'fixedfooter') {
+        return;
+    }
 
     const adElm = document.createElement('div');
 
@@ -71,12 +76,11 @@ function renderAd(config) {
 
         if (targetElms) {
             [...targetElms].forEach(targetElm => {
-                // const containerElm = (option === 'appendTo' || option === 'prependTo') ? targetElm : targetElm.parentNode;
-                // const skipAd = containerElm.querySelectorAll('[data-ea-publisher], [data-ea-type]').length > 0;
+                const matchElm = option === 'appendTo' || option === 'prependTo' ? targetElm : targetElm.parentNode;
+                const isSkipSidebarAd = sidebarAd && matchElm.matches('.sidebar, .sidebar *');
 
-                // if (!skipAd) {
-                targetElm.insertAdjacentHTML(insertPosition, adElm.outerHTML);
-                // }
+                // Skip rendering of duplicate sidebar placement
+                !isSkipSidebarAd && targetElm.insertAdjacentHTML(insertPosition, adElm.outerHTML);
             });
         }
     }
@@ -119,8 +123,6 @@ function renderAd(config) {
         hook.doneEach(function() {
             // Remove .loaded class from EA styles to prevent flashing on reload
             const eaStyleElmFixed = document.querySelector('head style[data-src="ethicalads"]');
-            const footerAd = document.querySelector('[data-ea-style="fixedfooter"]');
-            const sidebarAd = document.querySelector('.sidebar [data-ea-publisher]');
 
             if (!eaStyleElmFixed) {
                 const styleElms = [...document.querySelectorAll('head style')];
@@ -138,18 +140,8 @@ function renderAd(config) {
             // Render `ethicalads.placements`
             settings.placements.forEach((placement, i) => {
                 const config = { ...settings, ...placement};
-                const isSkipFooterAd = footerAd && config.eaStyle === 'fixedfooter';
-                const isSkipSidebarAd = sidebarAd && ['appendTo', 'prependTo', 'insertBefore', 'insertAfter'].some(prop =>
-                    config[prop] && [...document.querySelectorAll(config[prop])].find(elm => {
-                        const matchElm = prop === 'appendTo' || prop === 'prependTo' ? elm : elm.parentNode;
 
-                        return matchElm.matches('.sidebar, .sidebar *');
-                    })
-                );
-
-                if (!isSkipFooterAd && !isSkipSidebarAd) {
-                    renderAd(config);
-                }
+                renderAd(config);
             });
 
             // Set `data-ea-publisher` value on static HTML elements if missing
