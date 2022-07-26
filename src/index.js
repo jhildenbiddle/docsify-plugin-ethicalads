@@ -71,7 +71,12 @@ function renderAd(config) {
 
         if (targetElms) {
             [...targetElms].forEach(targetElm => {
+                // const containerElm = (option === 'appendTo' || option === 'prependTo') ? targetElm : targetElm.parentNode;
+                // const skipAd = containerElm.querySelectorAll('[data-ea-publisher], [data-ea-type]').length > 0;
+
+                // if (!skipAd) {
                 targetElm.insertAdjacentHTML(insertPosition, adElm.outerHTML);
+                // }
             });
         }
     }
@@ -114,6 +119,8 @@ function renderAd(config) {
         hook.doneEach(function() {
             // Remove .loaded class from EA styles to prevent flashing on reload
             const eaStyleElmFixed = document.querySelector('head style[data-src="ethicalads"]');
+            const footerAd = document.querySelector('[data-ea-style="fixedfooter"]');
+            const sidebarAd = document.querySelector('.sidebar [data-ea-publisher]');
 
             if (!eaStyleElmFixed) {
                 const styleElms = [...document.querySelectorAll('head style')];
@@ -131,8 +138,18 @@ function renderAd(config) {
             // Render `ethicalads.placements`
             settings.placements.forEach((placement, i) => {
                 const config = { ...settings, ...placement};
+                const isSkipFooterAd = footerAd && config.eaStyle === 'fixedfooter';
+                const isSkipSidebarAd = sidebarAd && ['appendTo', 'prependTo', 'insertBefore', 'insertAfter'].some(prop =>
+                    config[prop] && [...document.querySelectorAll(config[prop])].find(elm => {
+                        const matchElm = prop === 'appendTo' || prop === 'prependTo' ? elm : elm.parentNode;
 
-                renderAd(config);
+                        return matchElm.matches('.sidebar, .sidebar *');
+                    })
+                );
+
+                if (!isSkipFooterAd && !isSkipSidebarAd) {
+                    renderAd(config);
+                }
             });
 
             // Set `data-ea-publisher` value on static HTML elements if missing
@@ -140,18 +157,20 @@ function renderAd(config) {
                 elm.setAttribute('data-ea-publisher', settings.eaPublisher);
             });
 
-            // Reset existing placements, remove old EA scripts, and re/load new placements
+            // Re/load new placements
             if (window.ethicalads) {
                 const loadedAdElms = [...document.querySelectorAll('[data-ea-publisher].loaded, [data-ea-type].loaded')];
                 const loadedScriptElms = [...document.querySelectorAll('script[src*="ethicalads.io/api/"]')];
                 const unloadedAdElms = [];
 
                 if (loadedAdElms.length) {
+                    // Remove .loaded class from existing placements to allow reloading
                     loadedAdElms.forEach(elm => {
                         elm.classList.remove('loaded');
                         unloadedAdElms.push(elm);
                     });
 
+                    // Remove previously injected <script> elements
                     loadedScriptElms.forEach(elm => elm.parentNode.removeChild(elm));
                 }
 
