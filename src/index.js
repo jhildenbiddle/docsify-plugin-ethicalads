@@ -139,13 +139,29 @@ function renderAd(config) {
             settings.placements.forEach((placement, i) => {
                 const config = { ...settings, ...placement};
 
-                renderAd(config);
+                if (config.eaPublisher) {
+                    renderAd(config);
+                }
+                else {
+                    // eslint-disable-next-line no-console
+                    console.error('docsify-plugin-ethicalads: Missing publisher ID', settings.placements[i]);
+                }
             });
 
             // Set `data-ea-publisher` value on static HTML elements if missing
-            [...document.querySelectorAll('[data-ea-type]:not([data-ea-publisher])')].forEach(elm => {
-                elm.setAttribute('data-ea-publisher', settings.eaPublisher);
-            });
+            const eaElmsWithoutPublisher = [...document.querySelectorAll('[data-ea-type]:not([data-ea-publisher])')];
+
+            if (eaElmsWithoutPublisher.length) {
+                if (settings.eaPublisher) {
+                    eaElmsWithoutPublisher.forEach(elm => {
+                        elm.setAttribute('data-ea-publisher', settings.eaPublisher);
+                    });
+                }
+                else {
+                    // eslint-disable-next-line no-console
+                    console.error('docsify-plugin-ethicalads: Missing publisher ID', eaElmsWithoutPublisher);
+                }
+            }
 
             // Re/load new placements
             if (window.ethicalads) {
