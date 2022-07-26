@@ -72,16 +72,14 @@ function renderAd(config) {
     // Generate ad placements
     for (const [option, insertPosition] of Object.entries(insertMap)) {
         const targetVal = config[option];
-        const targetElms = typeof targetVal === 'string' ? document.querySelectorAll(targetVal) : targetVal;
+        const targetElm = typeof targetVal === 'string' ? document.querySelector(targetVal) : targetVal;
 
-        if (targetElms) {
-            [...targetElms].forEach(targetElm => {
-                const matchElm = option === 'appendTo' || option === 'prependTo' ? targetElm : targetElm.parentNode;
-                const isSkipSidebarAd = sidebarAd && matchElm.matches('.sidebar, .sidebar *');
+        if (targetElm) {
+            const matchElm = option === 'appendTo' || option === 'prependTo' ? targetElm : targetElm.parentNode;
+            const isSkipSidebarAd = sidebarAd && matchElm.matches('.sidebar, .sidebar *');
 
-                // Skip rendering of duplicate sidebar placement
-                !isSkipSidebarAd && targetElm.insertAdjacentHTML(insertPosition, adElm.outerHTML);
-            });
+            // Skip rendering of duplicate sidebar placement
+            !isSkipSidebarAd && targetElm.insertAdjacentHTML(insertPosition, adElm.outerHTML);
         }
     }
 }
