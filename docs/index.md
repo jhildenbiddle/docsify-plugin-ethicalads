@@ -46,7 +46,7 @@ Sample ad placements using default and custom styles.
 - Render ad placements from [EthicalAds](https://www.ethicalads.io/) within docsify sites
 - Supports multiple ad placements and locations
 - Configure placements using EthicalAds [API options](https://ethical-ad-client.readthedocs.io/)
-- Customize styles using CSS custom properties
+- Customize placement styles using CSS custom properties
 - Compatible with [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/) themes
 
 ?> Like this plugin? Be sure to check out [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable) for your site theme, [docsify-tabs](https://jhildenbiddle.github.io/docsify-tabs/) for tabbed content, and [docsify-plugin-runkit](https://jhildenbiddle.github.io/docsify-plugin-runkit/) for live JavaScript REPLs!
@@ -115,20 +115,21 @@ ethicalads: {
 
 The [`placements`](#placements) option allows defining multiple ad placements and configuration options via the `$docsify.ethicalads` configuration object.
 
-For example, here is a sample configuration for rendering a simpler text-based placement in the sidebar as well as a text-based placement after the first `<h2>` element on every markdown page:
+For example, here is a sample configuration for rendering two text-based ad placements:
 
 ```javascript
 ethicalads: {
   eaPublisher: 'my-publisher-id',
-  showSidebar: false,
   placements: [
     {
-        insertBefore: '.sidebar-nav',
-        eaType: 'text'
+      // Inserts placement after first <h2> element in `#main`
+      insertAfter: '#main > h2',
+      eaType: 'text'
     },
     {
-        insertAfter: '#main > h2:first-of-type',
-        eaType: 'text'
+      // Appends placement to `#main`
+      appendTo: '#main',
+      eaType: 'text'
     }
   ]
 }
@@ -146,7 +147,7 @@ Here is some markdown text.
 <div data-ea-type="text" data-ea-keywords="foo|bar|baz"></div>
 ```
 
-Note that if a `data-ea-publisher` attribute is omitted but a `data-ea-type` attribute is added, the plugin will automatically set the missing publisher attribute to the [`publisher`](#data-attributes) option value.
+Note that if a `data-ea-publisher` attribute is omitted but a `data-ea-type` attribute is added, the plugin will automatically set the missing publisher attribute to the [`eaPublisher`](#data-attributes) option value.
 
 ## Options
 
@@ -274,7 +275,9 @@ An array of objects containing ad placement configurations with the following op
 - `insertAfter`: CSS selector or DOM element to insert the placement *after*
 - `insertBefore`: CSS selector or DOM element to insert the placement *before*
 
-Note that when these values are set directly under the `$docsify.ethicalads` property they will serve as default values for configurations found in the `placements` array.
+Each items in the placements array will render one ad placement. Specifying a CSS selector for the insertion point that matches multiple elements (e.g, `h2`) will render the placement based on the first matching element.
+
+When any of these values are set directly under the `$docsify.ethicalads` property they will serve as default values for items in the `placements` array.
 
 **Example**
 
@@ -287,13 +290,18 @@ ethicalads: {
   showSidebar: false,
   placements: [
     {
-        insertBefore: '.sidebar-nav',
-        // Override default values
-        eaType: 'image',
-        class: 'horizontal flat',
+      // Inserts placement after first <h2> element in `#main`
+      insertAfter: '#main > h2',
+      // Override default values
+      eaType: 'image',
+      class: 'horizontal flat',
     },
     {
-        insertAfter: '#main > h2:first-of-type'
+      // Appends placement to `#main`
+      appendTo: '#main',
+      // Defaults applied:
+      // eaType: 'text',
+      // class: 'custom-ad'
     }
   ]
 }
@@ -460,27 +468,27 @@ Ad placement styles can be customized using the CSS custom properties. Custom pr
 ```css
 /* Default values shown */
 :root {
-    --ea-background: #f7f7f7;
-    --ea-border-color: #ededed;
-    --ea-border-radius: 4px;
-    --ea-callout-background: #ededed;
-    --ea-callout-color: 'inherit';
-    --ea-callout-font-size: 10px;
-    --ea-color: #444;
-    --ea-font-size: 12px;
-    --ea-line-height: 1.4;
-    --ea-margin: 1em;
-    --ea-sidebar-inset: 300px;
-    --ea-sidebar-toggle-inset: 45px;
-    --ea-strong-color: var(--theme-color, #42b983);
+  --ea-background: #f7f7f7;
+  --ea-border-color: #ededed;
+  --ea-border-radius: 4px;
+  --ea-callout-background: #ededed;
+  --ea-callout-color: 'inherit';
+  --ea-callout-font-size: 10px;
+  --ea-color: #444;
+  --ea-font-size: 12px;
+  --ea-line-height: 1.4;
+  --ea-margin: 1em;
+  --ea-sidebar-inset: 300px;
+  --ea-sidebar-toggle-inset: 45px;
+  --ea-strong-color: var(--theme-color, #42b983);
 
-    /* Dark */
-    --ea-dark-background: #1f282d;
-    --ea-dark-border-color: #384951;
-    --ea-dark-callout-background: #384951;
-    --ea-dark-callout-color: 'inherit';
-    --ea-dark-color: #fff;
-    --ea-dark-strong-color: var(--ea-strong-color);
+  /* Dark */
+  --ea-dark-background: #1f282d;
+  --ea-dark-border-color: #384951;
+  --ea-dark-callout-background: #384951;
+  --ea-dark-callout-color: 'inherit';
+  --ea-dark-color: #fff;
+  --ea-dark-strong-color: var(--ea-strong-color);
 }
 ```
 
