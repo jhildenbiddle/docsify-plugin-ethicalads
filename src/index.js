@@ -1,3 +1,5 @@
+// TODO: Prevent multiple ads when navigating to new pages (sidebar and footer)
+
 import './style.css';
 
 const defaults = {
@@ -46,7 +48,7 @@ function renderAd(config) {
 
     const adElm = document.createElement('div');
 
-    // Data attributes
+    // Apply data attributes
     for (const [key, value] of Object.entries(config)) {
         if (/^ea[A-Z]/.test(key) && config[key]) {
             const dataAttr = camelToDashCase(key);
@@ -55,14 +57,14 @@ function renderAd(config) {
         }
     }
 
-    // HTML attributes
+    // Apply HTML attributes
     ['class', 'id', 'style'].forEach(attr => {
         if (config[attr]) {
             adElm.setAttribute(attr, config[attr]);
         }
     });
 
-    // Generate ad elements
+    // Generate ad placements
     for (const [option, insertPosition] of Object.entries(insertMap)) {
         const targetVal = config[option];
         const targetElms = typeof targetVal === 'string' ? document.querySelectorAll(targetVal) : targetVal;
@@ -80,45 +82,54 @@ function renderAd(config) {
     const docsifyEthicalAds = function(hook, vm) {
         const settings = { ...defaults, ...(window.$docsify.ethicalads || {})};
 
-        // Preset: fixedfooter
-        if (settings.showFooter) {
-            const defaults = {
-                appendTo: 'main',
-                eaStyle: 'fixedfooter',
-                eaType: 'text',
-                class: 'bordered'
-            };
-            const config = isObject(settings.showFooter) ? { ...defaults, ...settings.showFooter } : defaults;
+        hook.init(function() {
+            if (settings.eaPublisher) {
+                // Add fixed-footer preset to `placements`
+                if (settings.showFooter) {
+                    const defaults = {
+                        appendTo: 'main',
+                        eaStyle: 'fixedfooter',
+                        eaType: 'text',
+                        class: 'bordered'
+                    };
+                    const config = isObject(settings.showFooter) ? { ...defaults, ...settings.showFooter } : defaults;
 
-            settings.placements.unshift(config);
-        }
+                    settings.placements.unshift(config);
+                }
 
-        // Preset: sidebar
-        if (settings.showSidebar) {
-            const defaults = {
-                insertBefore: '.sidebar-nav',
-                eaType: 'image',
-                class: 'horizontal flat'
-            };
-            const config = isObject(settings.showSidebar) ? { ...defaults, ...settings.showSidebar } : defaults;
+                // Add sidebar preset to `placements`
+                if (settings.showSidebar) {
+                    const defaults = {
+                        insertBefore: '.sidebar-nav',
+                        eaType: 'image',
+                        class: 'horizontal flat'
+                    };
+                    const config = isObject(settings.showSidebar) ? { ...defaults, ...settings.showSidebar } : defaults;
 
-            settings.placements.unshift(config);
-        }
-
-        hook.ready(function() {
-            const scriptElm = document.createElement('script');
-
-            scriptElm.src = settings.clientURL;
-            document.body.appendChild(scriptElm);
+                    settings.placements.unshift(config);
+                }
+            }
         });
 
         hook.doneEach(function() {
-            if (!window.$docsify.ethicalads) {
-                return;
+            // Remove .loaded class from EA styles to prevent flashing on reload
+            const eaStyleElmFixed = document.querySelector('head style[data-src="ethicalads"]');
+
+            if (!eaStyleElmFixed) {
+                const styleElms = [...document.querySelectorAll('head style')];
+
+                styleElms.forEach(styleElm => {
+                    const hasLoadedSelector = /\[data-ea-publisher]\.loaded/.test(styleElm.textContent);
+
+                    if (hasLoadedSelector) {
+                        styleElm.textContent = styleElm.textContent.replace(/\.loaded/g, '');
+                        styleElm.setAttribute('data-src', 'ethicalads');
+                    }
+                });
             }
 
             // Render `ethicalads.placements`
-            settings.placements.forEach(placement => {
+            settings.placements.forEach((placement, i) => {
                 const config = { ...settings, ...placement};
 
                 renderAd(config);
@@ -129,19 +140,35 @@ function renderAd(config) {
                 elm.setAttribute('data-ea-publisher', settings.eaPublisher);
             });
 
+            // Reset existing placements, remove old EA scripts, and re/load new placements
             if (window.ethicalads) {
                 const loadedAdElms = [...document.querySelectorAll('[data-ea-publisher].loaded, [data-ea-type].loaded')];
+                const loadedScriptElms = [...document.querySelectorAll('script[src*="ethicalads.io/api/"]')];
+                const unloadedAdElms = [];
 
-                loadedAdElms.forEach(elm => {
-                    elm.classList.remove('loaded');
-                });
+                if (loadedAdElms.length) {
+                    loadedAdElms.forEach(elm => {
+                        elm.classList.remove('loaded');
+                        unloadedAdElms.push(elm);
+                    });
 
-                window.ethicalads.load();
+                    loadedScriptElms.forEach(elm => elm.parentNode.removeChild(elm));
+                }
 
-                loadedAdElms.forEach(elm => {
-                    // elm.parentNode.removeChild(elm);
-                });
+                unloadedAdElms.concat(...document.querySelectorAll('[data-ea-publisher]:not(.loaded)'));
+
+                if (unloadedAdElms.length) {
+                    window.ethicalads.load();
+                }
             }
+        });
+
+        hook.ready(function() {
+            // Inject EthicalAds client library
+            const scriptElm = document.createElement('script');
+
+            scriptElm.src = settings.clientURL;
+            document.head.appendChild(scriptElm);
         });
     };
 
