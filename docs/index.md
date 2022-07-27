@@ -17,11 +17,13 @@ Sample ad placements using default and custom styles.
 <div class="ad-grid">
   <div
     data-ea-publisher="jhildenbiddle-github-io"
-    data-ea-type="image">
+    data-ea-type="image"
+    data-ea-campaign-types="house">
   </div>
   <div
     data-ea-publisher="jhildenbiddle-github-io"
     data-ea-type="image"
+    data-ea-campaign-types="house"
     class="dark horizontal"
     style="--ea-strong-color: #22d3ee;">
   </div>
@@ -31,11 +33,13 @@ Sample ad placements using default and custom styles.
   <div
     data-ea-publisher="jhildenbiddle-github-io"
     data-ea-type="text"
+    data-ea-campaign-types="house"
     style="flex: 1 1 300px;">
   </div>
   <div
     data-ea-publisher="jhildenbiddle-github-io"
     data-ea-type="text"
+    data-ea-campaign-types="house"
     class="custom-ad"
     style="flex: 1 1 300px;">
   </div>
@@ -413,6 +417,7 @@ ethicalads: {
     <div
       data-ea-publisher="jhildenbiddle-github-io"
       data-ea-type="image"
+      data-ea-campaign-types="house"
       class="raised">
     </div>
   </div>
@@ -421,6 +426,7 @@ ethicalads: {
     <div
       data-ea-publisher="jhildenbiddle-github-io"
       data-ea-type="image"
+      data-ea-campaign-types="house"
       class="flat">
     </div>
   </div>
@@ -429,6 +435,7 @@ ethicalads: {
     <div
       data-ea-publisher="jhildenbiddle-github-io"
       data-ea-type="image"
+      data-ea-campaign-types="house"
       class="bordered">
     </div>
   </div>
@@ -437,6 +444,7 @@ ethicalads: {
     <div
       data-ea-publisher="jhildenbiddle-github-io"
       data-ea-type="image"
+      data-ea-campaign-types="house"
       class="dark">
     </div>
   </div>
@@ -445,6 +453,7 @@ ethicalads: {
     <div
       data-ea-publisher="jhildenbiddle-github-io"
       data-ea-type="image"
+      data-ea-campaign-types="house"
       class="adaptive">
     </div>
   </div>
@@ -453,6 +462,7 @@ ethicalads: {
     <div
       data-ea-publisher="jhildenbiddle-github-io"
       data-ea-type="image"
+      data-ea-campaign-types="house"
       class="horizontal">
     </div>
   </div>
