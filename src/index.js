@@ -123,8 +123,11 @@ function renderAd(config) {
             }
         });
 
-        hook.doneEach(function() {
-            // Remove .loaded class from EA styles to prevent flashing on reload
+        hook.beforeEach(function() {
+            // Remove the `.loaded` class from EA styles to prevent flashing on
+            // reload. This will most likely not find the EA stylesheet because
+            // the EthicalAds client is asynchronous and will not inject its
+            // styles until after the initial page load.
             const eaStyleElmFixed = document.querySelector('head style[data-src="ethicalads"]');
 
             if (!eaStyleElmFixed) {
@@ -139,7 +142,9 @@ function renderAd(config) {
                     }
                 });
             }
+        });
 
+        hook.doneEach(function() {
             // Render `ethicalads.placements`
             settings.placements.forEach((placement, i) => {
                 const config = { ...adDefaults, ...placement};
