@@ -24,6 +24,13 @@
     --ea-dark-strong-color: var(--ea-strong-color);
 }
 
+/* Docsify Themeable */
+:root:where(.themeable) {
+    --ea-sidebar-inset: var(--sidebar-width);
+    --ea-sidebar-toggle-inset: 0;
+}
+
+
 /* Global */
 /* ---------------------------------------- */
 [data-ea-publisher][class] {
@@ -69,6 +76,7 @@
     color: var(--ea-callout-color);
 }
 
+
 /* Global - Image Ad */
 /* ---------------------------------------- */
 [data-ea-type][class] .ea-type-image .ea-content > a > img {
@@ -80,6 +88,7 @@
 [data-ea-type][class].horizontal .ea-type-image .ea-content > a > img {
     margin-right: 1em;
 }
+
 
 /* Global - Contained Callout  */
 /* ---------------------------------------- */
@@ -106,6 +115,7 @@
     margin: 0;
     padding-bottom: 2.75em;
 }
+
 
 /* Style: Fixed Footer */
 /* ---------------------------------------- */
@@ -141,6 +151,7 @@ body.close [data-ea-style="fixedfooter"][class] .ea-placement[class] {
     padding-left: var(--ea-sidebar-toggle-inset);
 }
 
+
 /* Style: Stickybox */
 /* ---------------------------------------- */
 [data-ea-style="stickybox"] .ea-placement.ea-type-image .ea-stickybox-hide {
@@ -155,6 +166,7 @@ body.close [data-ea-style="fixedfooter"][class] .ea-placement[class] {
     font-size: 16px;
     line-height: 17px;
 }
+
 
 /* Scoped: Sidebar */
 /* ---------------------------------------- */
@@ -192,6 +204,18 @@ body.close [data-ea-style="fixedfooter"][class] .ea-placement[class] {
     border-bottom-right-radius: 0;
 }
 
+/* Docsify Themeable */
+:where(.themeable) .sidebar {
+    --ea-background: hsl(var(--mono-hue), var(--mono-saturation), 94%);
+    --ea-callout-background: hsl(var(--mono-hue), var(--mono-saturation), 89%);
+    --ea-margin: 1em 0 0 0;
+}
+
+:where(.themeable) .sidebar [data-ea-publisher][class].flat {
+    --ea-margin: 0 -25px;
+}
+
+
 /* Scoped: Sidebar - Image Ad */
 /* ---------------------------------------- */
 .sidebar .horizontal .ea-type-image {
@@ -212,12 +236,14 @@ body.close [data-ea-style="fixedfooter"][class] .ea-placement[class] {
     margin-top: 0.5em;
 }
 
+
 /* Scoped: Sidebar - Text Ad */
 /* ---------------------------------------- */
 .sidebar .ea-type-text .ea-content {
     padding-right: 15px;
     padding-left: 15px;
 }
+
 
 /* Theme: Dark */
 /* ---------------------------------------- */
