@@ -69,6 +69,8 @@ Sample ad placements using default and custom styles.
    <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-ethicalads@1"></script>
    ```
 
+   !> Note the `@` version number lock in the URLs above. This prevents breaking changes in future releases from affecting your project and is therefore the safest method of loading dependencies from a CDN. When a new major version is released, you will need to manually update your CDN URLs by changing the version number after the @ symbol.
+
    The plugin is also available for installation from npm:
 
    ```bash
