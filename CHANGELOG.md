@@ -1,7 +1,7 @@
 # Change Log
 
-## 0.0.0
+## 0.0.1
 
-*2022-XX-XX*
+*2022-07-27*
 
 - Initial release
