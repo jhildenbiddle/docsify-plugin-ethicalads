@@ -16,14 +16,7 @@ const defaults = {
     // Placements
     showFooter: false,
     showSidebar: true,
-    placements: [
-        {
-            // insertBefore: null,
-            // appendTo: null,
-            // prependTo: null,
-            // insertAfter: null
-        }
-    ],
+    placements: [],
     // Plugin
     clientURL: 'https://media.ethicalads.io/media/client/ethicalads.min.js'
 };
