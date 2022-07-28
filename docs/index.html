@@ -43,22 +43,6 @@
             --ea-color: rgba(255, 255, 255, 0.85);
             --ea-strong-color: #f8fafc;
         }
-
-        /* Docsify Themeable */
-        :root {
-            --ea-sidebar-inset: var(--sidebar-width);
-            --ea-sidebar-toggle-inset: 0;
-        }
-
-        .sidebar {
-            --ea-background: hsl(var(--mono-hue), var(--mono-saturation), 94%);
-            --ea-callout-background: hsl(var(--mono-hue), var(--mono-saturation), 89%);
-            --ea-margin: 1em 0 0 0;
-        }
-
-        .sidebar [data-ea-publisher][class].flat {
-            --ea-margin: 0 -25px;
-        }
     </style>
     <script>
         // Docsify
@@ -84,10 +68,13 @@
             ethicalAds: {
                 eaPublisher: 'jhildenbiddle-github-io',
                 // showFooter: true,
+                // showFooter: {
+                //     style: '--ea-strong-color: red; --ea-border-color: green;'
+                // },
                 // showSidebar: false,
                 // showSidebar: {
-                //     class: 'dark flat horizontal',
-                //     style: '--ea-strong-color: #38bdf8;'
+                //     class: 'bordered',
+                //     style: '--ea-strong-color: red; --ea-border-color: green;'
                 // },
                 placements: [
                     // {
