@@ -75,13 +75,13 @@ Sample ad placements using default and custom styles.
    npm install docsify-plugin-ethicalads
    ```
 
-1. Add an `ethicalads` property to the [`window.$docsify`](https://docsify.js.org/#/configuration) configuration object in your `index.html` file along with your publisher ID:
+1. Add an `ethicalAds` property to the [`window.$docsify`](https://docsify.js.org/#/configuration) configuration object in your `index.html` file along with your publisher ID:
 
    ```html
    <script>
      window.$docsify = {
        // ...
-       ethicalads: {
+       ethicalAds: {
          eaPublisher: 'my-publisher-id',
          // More options...
        }
@@ -100,7 +100,7 @@ The plugin has two preset ad placements: one in the sidebar and one set using a 
 By default, the plugin will render the preset placement in the sidebar. To prevent his behavior, set the [`showSidebar`](#showsidebar) option to `false`:
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   showSidebar: false
 }
@@ -109,7 +109,7 @@ ethicalads: {
 Similarly, to render the preset fixed-footer placement, set [`showFooter`](#showfooter) to `true`:
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   showFooter: true
 }
@@ -117,12 +117,12 @@ ethicalads: {
 
 ### Dynamic placements
 
-The [`placements`](#placements) option allows defining multiple ad placements and configuration options via the `$docsify.ethicalads` configuration object.
+The [`placements`](#placements) option allows defining multiple ad placements and configuration options via the `$docsify.ethicalAds` configuration object.
 
 For example, here is a sample configuration for rendering two text-based ad placements:
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   placements: [
     {
@@ -155,12 +155,12 @@ Note that if a `data-ea-publisher` attribute is omitted but a `data-ea-type` att
 
 ## Options
 
-Options are set using the `ethicalads` property of the [`window.$docsify`](https://docsify.js.org/#/configuration) configuration object:
+Options are set using the `ethicalAds` property of the [`window.$docsify`](https://docsify.js.org/#/configuration) configuration object:
 
 ```js
 window.$docsify = {
   // ...
-  ethicalads: {
+  ethicalAds: {
     eaPublisher: 'my-publisher-id',
     eaCampaignTypes: 'paid|community',
     class: 'custom-ad'
@@ -197,7 +197,7 @@ The following options will set corresponding `data-ea-` data attributes and valu
 **Example**
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   eaType: 'text',
   eaCampaignTypes: 'paid|community',
@@ -229,7 +229,7 @@ The following options will set corresponding HTML attributes and values on ad pl
 **Example**
 
 ```js
-ethicalads: {
+ethicalAds: {
   // Data attributes
   eaPublisher: 'my-publisher-id',
   // HTML attributes
@@ -258,7 +258,7 @@ ethicalads: {
 The URL of the EthicalAds client library. The plugin will inject this library via a `<script>` element in the document `<head>` automatically.
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   // Un-minified version
   clientURL: 'https://media.ethicalads.io/media/client/ethicalads.js'
@@ -281,12 +281,12 @@ An array of objects containing ad placement configurations with the following pr
 
 Each items in the placements array will render one ad placement. Specifying a CSS selector that matches multiple elements (e.g. `"h2"`) for the insertion point will render the placement based on the first matching element.
 
-When any of these values are set directly under `$docsify.ethicalads` they will serve as default values for items in the `placements` array.
+When any of these values are set directly under `$docsify.ethicalAds` they will serve as default values for items in the `placements` array.
 
 **Example**
 
 ```js
-ethicalads: {
+ethicalAds: {
   // Default values for `placements`
   eaPublisher: 'my-publisher-id',
   eaType: 'text',
@@ -346,7 +346,7 @@ Determines if the preset fixed-footer ad placement will be rendered. When set to
 To disable rending this placement, set this value to `false`. To customize this placement, set the value to a configuration object as described in the [`placements`](#placements) section. This configuration will be merged with the preset configuration above, so only modified values need to be specified.
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   showSidebar: {
     eaKeywords: 'foo|bar|baz'
@@ -372,7 +372,7 @@ Determines if the preset sidebar ad placement will be rendered. When set to `tru
 To disable rending this placement, set this value to `false`. To customize this placement, set the value to a configuration object as described in the [`placements`](#placements) section. This configuration will be merged with the preset configuration above, so only modified values need to be specified.
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   showSidebar: {
     eaKeywords: 'foo|bar|baz'
@@ -399,7 +399,7 @@ EthicalAds offers several CSS classes for applying themes, setting orientation, 
 These classes can be applied using the [`class`](#html-attributes) attribute:
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   class: 'dark flat horizontal'
 }
@@ -504,7 +504,7 @@ Ad placement styles can be customized using the CSS custom properties below. Cus
 The simplest way to apply custom styles is by creating "inline" styles using the [`style`](#html-attributes) attribute:
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   style: '--ea-background: red;'
 }
@@ -536,7 +536,7 @@ CSS classes can be used to apply custom styles to specific ad placements using t
 ```
 
 ```js
-ethicalads: {
+ethicalAds: {
   eaPublisher: 'my-publisher-id',
   class: 'custom-ad',
 }

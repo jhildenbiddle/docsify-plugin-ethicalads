@@ -89,7 +89,7 @@ function renderAd(config) {
 (function() {
     // Plugin
     const docsifyEthicalAds = function(hook, vm) {
-        const settings = { ...defaults, ...(window.$docsify.ethicalads || {})};
+        const settings = { ...defaults, ...(window.$docsify.ethicalAds || {})};
 
         hook.init(function() {
             if (settings.eaPublisher) {
@@ -166,7 +166,7 @@ function renderAd(config) {
             }
 
             // Re/load new placements
-            if (window.ethicalads) {
+            if (window.ethicalAds) {
                 const loadedAdElms = [...document.querySelectorAll('[data-ea-publisher].loaded, [data-ea-type].loaded')];
                 const loadedScriptElms = [...document.querySelectorAll('script[src*="ethicalads.io/api/"]')];
                 const unloadedAdElms = [];
@@ -185,7 +185,7 @@ function renderAd(config) {
                 unloadedAdElms.concat(...document.querySelectorAll('[data-ea-publisher]:not(.loaded)'));
 
                 if (unloadedAdElms.length) {
-                    window.ethicalads.load();
+                    window.ethicalAds.load();
                 }
             }
         });
