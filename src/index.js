@@ -28,6 +28,9 @@ const defaults = {
     clientURL: 'https://media.ethicalads.io/media/client/ethicalads.min.js'
 };
 
+const adHTMLAttrs = ['class', 'id', 'style'];
+const adIgnoreKeys = ['clientURL', 'placements', 'showFooter', 'showSidebar'];
+
 function camelToDashCase(str) {
     return str.replace(/([a-z])([A-Z])/g, m => m[0] + '-' + m[1].toLowerCase());
 }
@@ -54,21 +57,17 @@ function renderAd(config) {
     }
 
     const adElm = document.createElement('div');
+    const dataAttrs = Object.keys(config).filter(key => config[key] && /^ea[A-Z]/.test(key));
+    const htmlAttrs = adHTMLAttrs.filter(key => config[key]);
 
-    // Apply data attributes
-    for (const [key, value] of Object.entries(config)) {
-        if (/^ea[A-Z]/.test(key) && config[key]) {
-            const dataAttr = camelToDashCase(key);
+    dataAttrs.forEach(v => {
+        const dataAttr = camelToDashCase(v);
 
-            adElm.setAttribute(`data-${dataAttr}`, value);
-        }
-    }
+        adElm.setAttribute(`data-${dataAttr}`, config[v]);
+    });
 
-    // Apply HTML attributes
-    ['class', 'id', 'style'].forEach(attr => {
-        if (config[attr]) {
-            adElm.setAttribute(attr, config[attr]);
-        }
+    htmlAttrs.forEach(v => {
+        adElm.setAttribute(v, config[v]);
     });
 
     // Generate ad placements
@@ -90,6 +89,10 @@ function renderAd(config) {
     // Plugin
     const docsifyEthicalAds = function(hook, vm) {
         const settings = { ...defaults, ...(window.$docsify.ethicalAds || {})};
+        const adDefaults = Object.fromEntries(
+            Object.entries(settings)
+                .filter(([key, value]) => value && !adIgnoreKeys.includes(key))
+        );
 
         hook.init(function() {
             if (settings.eaPublisher) {
@@ -139,7 +142,7 @@ function renderAd(config) {
 
             // Render `ethicalads.placements`
             settings.placements.forEach((placement, i) => {
-                const config = { ...settings, ...placement};
+                const config = { ...adDefaults, ...placement};
 
                 if (config.eaPublisher) {
                     renderAd(config);
