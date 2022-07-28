@@ -55,6 +55,16 @@ Sample ad placements using default and custom styles.
 - Customize placement styles using CSS custom properties
 - Compatible with [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/) themes
 
+**Browser Support**
+
+<img src="assets/img/chrome.svg"> <span>Chrome 88+</span>
+<br>
+<img src="assets/img/edge.svg"> <span>Edge 88+</span>
+<br>
+<img src="assets/img/firefox.svg"> <span>Firefox 78+</span>
+<br>
+<img src="assets/img/safari.svg"> <span>Safari 14+</span>
+
 ## Installation
 
 1. Apply to [become a publisher](https://www.ethicalads.io/publishers/) on the [EthicalAds](https://www.ethicalads.io/) network. You will need a valid publisher ID to render ad placements on your site.
