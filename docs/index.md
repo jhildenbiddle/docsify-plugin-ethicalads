@@ -339,16 +339,16 @@ Determines if the preset fixed-footer ad placement will be rendered. When set to
   appendTo: 'main',
   eaStyle: 'fixedfooter',
   eaType: 'text',
-  class: 'bordered'
+  class: 'adaptive bordered'
 }
 ```
 
-To disable rending this placement, set this value to `false`. To customize this placement, set the value to a configuration object as described in the [`placements`](#placements) section. This configuration will be merged with the preset configuration above, so only modified values need to be specified.
+To customize this placement, set the value to a configuration object containing [data attribute](#data-attributes) or [html attribute](#html-attributes) values. This configuration will be merged with the preset configuration above, so only modified values need to be specified.
 
 ```js
 ethicalAds: {
   eaPublisher: 'my-publisher-id',
-  showSidebar: {
+  showFooter: {
     eaKeywords: 'foo|bar|baz'
   }
 }
@@ -365,11 +365,11 @@ Determines if the preset sidebar ad placement will be rendered. When set to `tru
 {
   insertBefore: '.sidebar-nav',
   eaType: 'image',
-  class: 'horizontal flat'
+  class: 'adaptive flat horizontal'
 }
 ```
 
-To disable rending this placement, set this value to `false`. To customize this placement, set the value to a configuration object as described in the [`placements`](#placements) section. This configuration will be merged with the preset configuration above, so only modified values need to be specified.
+To customize this placement, set the value to a configuration object containing [data attribute](#data-attributes) or [html attribute](#html-attributes) values. This configuration will be merged with the preset configuration above, so only modified values need to be specified.
 
 ```js
 ethicalAds: {
@@ -401,12 +401,12 @@ These classes can be applied using the [`class`](#html-attributes) attribute:
 ```js
 ethicalAds: {
   eaPublisher: 'my-publisher-id',
-  class: 'dark flat horizontal'
+  class: 'adaptive flat horizontal'
 }
 ```
 
 ```html
-<div data-ea-type="image" class="dark flat horizontal"></div>
+<div data-ea-type="image" class="adaptive flat horizontal"></div>
 ```
 
 **Examples**

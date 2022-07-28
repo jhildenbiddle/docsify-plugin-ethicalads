@@ -99,7 +99,7 @@ function renderAd(config) {
                         appendTo: 'main',
                         eaStyle: 'fixedfooter',
                         eaType: 'text',
-                        class: 'bordered'
+                        class: 'adaptive bordered'
                     };
                     const config = isObject(settings.showFooter) ? { ...defaults, ...settings.showFooter } : defaults;
 
@@ -111,7 +111,7 @@ function renderAd(config) {
                     const defaults = {
                         insertBefore: '.sidebar-nav',
                         eaType: 'image',
-                        class: 'horizontal flat'
+                        class: 'adaptive flat horizontal'
                     };
                     const config = isObject(settings.showSidebar) ? { ...defaults, ...settings.showSidebar } : defaults;
 
