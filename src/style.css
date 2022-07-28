@@ -123,6 +123,8 @@
 }
 
 [data-ea-style="fixedfooter"][class] .ea-placement[class] .ea-content {
+    border: 0;
+    border-radius: 0;
     margin: 0;
 }
 
