@@ -45,6 +45,8 @@ Sample ad placements using default and custom styles.
   </div>
 </div>
 
+?> Like this plugin? Check out [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable) for your site theme, [docsify-tabs](https://jhildenbiddle.github.io/docsify-tabs/) for tabbed content, and [docsify-plugin-runkit](https://jhildenbiddle.github.io/docsify-plugin-runkit/) for live JavaScript REPLs!
+
 ## Features
 
 - Render ad placements from [EthicalAds](https://www.ethicalads.io/) within docsify sites
@@ -52,8 +54,6 @@ Sample ad placements using default and custom styles.
 - Configure placements using EthicalAds [API options](https://ethical-ad-client.readthedocs.io/)
 - Customize placement styles using CSS custom properties
 - Compatible with [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable/) themes
-
-?> Like this plugin? Be sure to check out [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable) for your site theme, [docsify-tabs](https://jhildenbiddle.github.io/docsify-tabs/) for tabbed content, and [docsify-plugin-runkit](https://jhildenbiddle.github.io/docsify-plugin-runkit/) for live JavaScript REPLs!
 
 ## Installation
 
