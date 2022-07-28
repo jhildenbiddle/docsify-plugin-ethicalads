@@ -172,6 +172,10 @@ body.close [data-ea-style="fixedfooter"][class] .ea-placement[class] {
     --ea-margin: 1em 0;
 }
 
+.sidebar .ea-placement[class] {
+    display: block;
+}
+
 .sidebar .ea-placement[class] .ea-content {
     max-width: none;
 }
