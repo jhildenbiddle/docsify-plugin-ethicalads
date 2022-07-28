@@ -15,14 +15,14 @@ A [docsify.js](https://docsify.js.org) plugin for rendering ad placements from [
 
 Sample ad placements using default and custom styles.
 
-<a href="https://jhildenbiddle.github.io/docsify-plugin-ethicalads">
-  <picture>
-    <source srcset="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-ads.webp" type="image/webp">
-    <img src="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-ads.jpg" alt="Screenshot of sample ad placements" width="617">
-  </picture>
-</a>
-
-<br>
+<p>
+  <a href="https://jhildenbiddle.github.io/docsify-plugin-ethicalads">
+    <picture>
+      <source srcset="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-ads.webp" type="image/webp">
+      <img src="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-ads.jpg" alt="Screenshot of sample ad placements" width="617">
+    </picture>
+  </a>
+</p>
 
 > 💡 Like this plugin? Check out [docsify-themeable](https://jhildenbiddle.github.io/docsify-themeable) for your site theme, [docsify-tabs](https://jhildenbiddle.github.io/docsify-tabs/) for tabbed content, and [docsify-plugin-runkit](https://jhildenbiddle.github.io/docsify-plugin-runkit/) for live JavaScript REPLs!
 
