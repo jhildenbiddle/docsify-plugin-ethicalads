@@ -1,6 +1,6 @@
 {
   "name": "docsify-plugin-ethicalads",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A docsify.js plugin for rendering ad placements from EthicalAds",
   "author": "John Hildenbiddle",
   "license": "MIT",
