@@ -1,7 +1,7 @@
 # docsify-plugin-ethicalads
 
 [![NPM](https://img.shields.io/npm/v/docsify-plugin-ethicalads.svg?style=flat-square)](https://www.npmjs.com/package/docsify-plugin-ethicalads)
-[![GitHub Workflow Status (main)](https://img.shields.io/github/workflow/status/jhildenbiddle/docsify-plugin-ethicalads/Build/main?label=checks&style=flat-square)](https://github.com/jhildenbiddle/docsify-plugin-ethicalads/actions?query=branch%3Amain+)
+[![GitHub Workflow Status (main)](https://img.shields.io/github/actions/workflow/status/jhildenbiddle/docsify-plugin-ethicalads/test.yml?branch=main&label=checks&style=flat-square)](https://github.com/jhildenbiddle/docsify-plugin-ethicalads/actions?query=branch%3Amain+)
 [![Codacy grade](https://img.shields.io/codacy/grade/63c04a45757e46c78e4e01c99346548c.svg?style=flat-square)](https://app.codacy.com/gh/jhildenbiddle/docsify-plugin-ethicalads/dashboard)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/jhildenbiddle/docsify-plugin-ethicalads/blob/main/LICENSE)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/docsify-plugin-ethicalads/badge)](https://www.jsdelivr.com/package/npm/docsify-plugin-ethicalads)
