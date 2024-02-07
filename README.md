@@ -19,7 +19,7 @@ Sample ad placements using default and custom styles.
   <a href="https://jhildenbiddle.github.io/docsify-plugin-ethicalads">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-dark.png">
-      <img alt="Screenshot of sample ad placements" src="./light.png">
+      <img alt="Screenshot of sample ad placements" src="https://raw.githubusercontent.com/jhildenbiddle/docsify-plugin-ethicalads/main/docs/assets/img/screenshot-light.png" width="790">
     </picture>
   </a>
 </p>
